@@ -14,6 +14,7 @@ $ cd javagroup-biometric-identification
 $ ./gradlew build
 ```
 <br/>
+
 For IDE, import this project as a Gradle project and build as usual after doing **Step 2** above
 
 <br/>
@@ -22,7 +23,7 @@ For IDE, import this project as a Gradle project and build as usual after doing 
 You need to provide the name of the picture that will be compared
 with the face captured as the first argument.<br/> Currently there are
 2 facial pictures included out of the box (**face1.jpg** and **face2.jpg**).<br/>
-For example, if the picture you put in ./src/main/resources previously is named **face3.jpg**, <br/>
+For example, if the picture you put in *./src/main/resources/* previously is named **face3.jpg**, <br/>
 then you can run the program with the command below:
 ```bash
 $ ./gradlew run --args="face3.jpg"
