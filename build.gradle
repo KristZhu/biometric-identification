@@ -15,6 +15,9 @@ plugins {
 
     // JavaFX
     id 'org.openjfx.javafxplugin' version '0.0.8'
+
+    // Eclipse
+    id 'eclipse'
 }
 
 repositories {
