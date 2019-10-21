@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.io.IOException;
+import java.io.File;
 
 import org.bytedeco.javacv.*;
 import org.bytedeco.javacpp.*;
@@ -42,9 +43,9 @@ public class App extends Application {
 	private static Net openFaceModel;
 	private static CascadeClassifier faceCascade;
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 		Application.launch(args);
-    }
+	}
 
 	// 128 dimension embedding produced by OpenFace
 	private Mat getFaceEmbedding(Mat faceOnlyMat) {
@@ -59,6 +60,7 @@ public class App extends Application {
 	}
 
 	private Mat getFaceOnlyMat(Mat picture, Rect[] facesArray) {
+		// TODO: Handle more than 1 faces detected case
 		if(facesArray.length > 0) {
 			// Only use the first detected face in faces
 			return picture.rowRange((int)facesArray[0].tl().y(), (int)facesArray[0].br().y())
@@ -94,11 +96,13 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage stage) throws IOException {
+		/*
 		if(getParameters().getRaw().size() < 1) {
 			System.out.println(getParameters().getRaw().size());
 			System.out.println("Please pass the photo file name for the verification as the first argument");
 			System.exit(0);
 		}
+		*/
 
 		//ImageView originalFrame = new ImageView();
 		VideoCapture capture = new VideoCapture();
@@ -106,12 +110,15 @@ public class App extends Application {
 
 		// Load Haar Cascade Pretrained Model
 		System.out.println("Loading Haar Cascade Classifier for Face Detection from OpenCV pretrained model");
-		faceCascade = new CascadeClassifier(App.class.getClassLoader().getResource("haarcascade_frontalface_alt2.xml").getPath());
+		//faceCascade = new CascadeClassifier(App.class.getClassLoader().getResource("haarcascade_frontalface_alt2.xml").getPath());
+		File f1 = new File(App.class.getClassLoader().getResource("haarcascade_frontalface_alt2.xml").getFile());
+		faceCascade = new CascadeClassifier(f1.getAbsolutePath());
 		System.out.println("Finished loading face detector");
 
 		// Load OpenFace Pretrained Model
 		System.out.println("Loading OpenFace Pretrained Model for Face Embedding");
-		openFaceModel = readNet(App.class.getClassLoader().getResource("nn4.small2.v1.t7").getPath());
+		File f2 = new File(App.class.getClassLoader().getResource("nn4.small2.v1.t7").getFile());
+		openFaceModel = readNet(f2.getAbsolutePath());
 		System.out.println("Loaded Model");
 
 
@@ -185,8 +192,12 @@ public class App extends Application {
 					// Preprocess the image stored in disk (the path is fetch from the first argument)
 					// and compare with current user
 					// This can be removed later. Store identity as a 128 Dimension embedding instead
+					/*
 					Mat storedFace = imread(App.class.getClassLoader()
 							.getResource(getParameters().getRaw().get(0)).getPath());
+					*/
+					File imgFile = new File(App.class.getClassLoader().getResource("face1.jpg").getFile());
+					Mat storedFace = imread(imgFile.getAbsolutePath());
 					RectVector faces2 = new RectVector();
 
 					// Detect faces in the image provided
