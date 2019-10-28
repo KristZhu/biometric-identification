@@ -104,6 +104,7 @@ public class App extends Application {
 		}
 		*/
 
+// test edit
 		//ImageView originalFrame = new ImageView();
 		VideoCapture capture = new VideoCapture();
 		ScheduledExecutorService timer;
@@ -152,7 +153,7 @@ public class App extends Application {
 			public void run() {
 				Mat frame = new Mat();
 				RectVector faces = new RectVector();
-		
+
 				// check if the capture is open
 				if (capture.isOpened()) {
 					try {
@@ -202,7 +203,7 @@ public class App extends Application {
 
 					// Detect faces in the image provided
 					preprocessAndDetectFaces(storedFace, faces2);
-			
+
 					Rect[] faces2Array = faces2.get();
 					// Get the face only image matrix of the provided image
 					Mat cropped2 = getFaceOnlyMat(storedFace, faces2Array);
