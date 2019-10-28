@@ -29,7 +29,7 @@ repositories {
 
 javafx {
     version = "11.0.2"
-    modules = [ 'javafx.base', 'javafx.controls', 'javafx.graphics', 'javafx.swing' ]
+    modules = [ 'javafx.base', 'javafx.controls', 'javafx.graphics', 'javafx.swing', 'javafx.fxml' ]
 }
 
 dependencies {

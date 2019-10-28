@@ -1,0 +1,26 @@
+.root {
+    -fx-font-size: 14px;
+    -fx-font-family: sans-serif;
+    -fx-background-color: #ffffff;
+}
+
+.parent {
+	-fx-background-color: #fff;
+}
+.sidebar {
+	-fx-background-color: #005582;
+}
+
+.pane {
+	-fx-border-color: #00c2c7;
+    -fx-border-width: 1px;
+    -fx-padding: 10;
+    -fx-spacing: 8;
+}
+
+.vbox {
+    -fx-border-color: #00c2c7;
+    -fx-border-width: 2px;
+    -fx-padding: 10;
+    -fx-spacing: 8;
+}

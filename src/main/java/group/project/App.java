@@ -36,6 +36,15 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import javafx.fxml.FXMLLoader;
+import java.net.URL;
+import javafx.application.Application;
+import javafx.event.Event;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
 
 public class App extends Application {
 	private static int counter = 0;
@@ -96,6 +105,11 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage stage) throws IOException {
+		FXMLLoader loader = new FXMLLoader(App.class.getClassLoader().getResource("Main.fxml"));
+		Parent root = FXMLLoader.load(App.class.getClassLoader().getResource("Main.fxml"));
+		Scene scene = new Scene(root,400,400);
+		stage.setScene(scene);
+		stage.show();
 		/*
 		if(getParameters().getRaw().size() < 1) {
 			System.out.println(getParameters().getRaw().size());
