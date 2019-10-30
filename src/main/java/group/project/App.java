@@ -3,239 +3,28 @@
  */
 package group.project;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.io.IOException;
-import java.io.File;
-
-import org.bytedeco.javacv.*;
-import org.bytedeco.javacpp.*;
-import org.bytedeco.opencv.opencv_core.*;
-import org.bytedeco.opencv.opencv_objdetect.*;
-import org.bytedeco.opencv.opencv_face.*;
-import org.bytedeco.opencv.opencv_videoio.VideoCapture;
-import org.bytedeco.opencv.opencv_dnn.*;
-import static org.bytedeco.opencv.global.opencv_imgcodecs.*;
-import static org.bytedeco.opencv.global.opencv_highgui.*;
-import static org.bytedeco.opencv.global.opencv_imgproc.*;
-import static org.bytedeco.opencv.global.opencv_face.*;
-import static org.bytedeco.opencv.global.opencv_core.*;
-import static org.bytedeco.opencv.global.opencv_objdetect.*;
-import static org.bytedeco.opencv.global.opencv_dnn.*;
-
-import javafx.scene.image.*;
 import javafx.application.Application;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.Pane;
 
 
 public class App extends Application {
-	private static int counter = 0;
-	private static final double THRESHOLD = 0.75;
-	private static Net openFaceModel;
-	private static CascadeClassifier faceCascade;
-
 	public static void main(String[] args) {
+		System.out.println("Currently there are " +
+				DAO.getAllStudents().size() + " student(s) in the database");
 		Application.launch(args);
 	}
 
-	// 128 dimension embedding produced by OpenFace
-	private Mat getFaceEmbedding(Mat faceOnlyMat) {
-		// Change the image matrix to a blob with shape [1, 3, 96, 96] to align with OpenFace input shape
-		// Also swap Red and Blue of this matrix (due to internal image type difference [BGR to RGB])
-		Mat blob = blobFromImage(faceOnlyMat, 1.0/255, new Size(96, 96), new Scalar(), true, false, CV_32F);
-		openFaceModel.setInput(blob);
-		// Has to be copied to other matrix because opencv uses the same pointer for the hereafter output
-		Mat output = new Mat();
-		openFaceModel.forward().copyTo(output);
-		return output;
-	}
-
-	private Mat getFaceOnlyMat(Mat picture, Rect[] facesArray) {
-		// TODO: Handle more than 1 faces detected case
-		if(facesArray.length > 0) {
-			// Only use the first detected face in faces
-			return picture.rowRange((int)facesArray[0].tl().y(), (int)facesArray[0].br().y())
-				.colRange((int)facesArray[0].tl().x(), (int)facesArray[0].br().x());
-			// Face Alignment (not yet implemented) may improve the result
-		} else {
-			// Return empty Mat if no face detected
-			// Can be checked with Mat::empty() function
-			return new Mat();
-		}
-	}
-
-	private void preprocessAndDetectFaces(Mat picture, RectVector faces) {
-		Mat grayFrame = new Mat();
-
-		// convert the frame in gray scale
-		cvtColor(picture, grayFrame, COLOR_BGR2GRAY);
-		// equalize the frame histogram to improve the result
-		equalizeHist(grayFrame, grayFrame);
-
-		// compute minimum face size (20% of the frame height, in our case)
-		int absoluteFaceSize = 0;
-		int height = grayFrame.rows();
-		if (Math.round(height * 0.2f) > 0)
-		{
-			absoluteFaceSize = Math.round(height * 0.2f);
-		}
-
-		// detect faces and store them in faces RectVector
-		faceCascade.detectMultiScale(grayFrame, faces, 1.1, 2, 0 | CASCADE_SCALE_IMAGE,
-				new Size(absoluteFaceSize, absoluteFaceSize), new Size());
-	}
 
 	@Override
 	public void start(Stage stage) throws IOException {
-		/*
-		if(getParameters().getRaw().size() < 1) {
-			System.out.println(getParameters().getRaw().size());
-			System.out.println("Please pass the photo file name for the verification as the first argument");
-			System.exit(0);
-		}
-		*/
-
-		//ImageView originalFrame = new ImageView();
-		VideoCapture capture = new VideoCapture();
-		ScheduledExecutorService timer;
-
-		// Load Haar Cascade Pretrained Model
-		System.out.println("Loading Haar Cascade Classifier for Face Detection from OpenCV pretrained model");
-		//faceCascade = new CascadeClassifier(App.class.getClassLoader().getResource("haarcascade_frontalface_alt2.xml").getPath());
-		File f1 = new File(App.class.getClassLoader().getResource("haarcascade_frontalface_alt2.xml").getFile());
-		faceCascade = new CascadeClassifier(f1.getAbsolutePath());
-		System.out.println("Finished loading face detector");
-
-		// Load OpenFace Pretrained Model
-		System.out.println("Loading OpenFace Pretrained Model for Face Embedding");
-		File f2 = new File(App.class.getClassLoader().getResource("nn4.small2.v1.t7").getFile());
-		openFaceModel = readNet(f2.getAbsolutePath());
-		System.out.println("Loaded Model");
-
-
-		/*
-		Group root = new Group();
-		Scene scene = new Scene(root);
-		scene.setFill(Color.BLACK);
-		HBox box = new HBox();
-		box.getChildren().add(originalFrame);
-		root.getChildren().add(box);
-
-		stage.setTitle("ImageView");
-		stage.setWidth(800);
-		stage.setHeight(800);
+		Pane home = FXMLLoader.load(App.class.getClassLoader().getResource("Home.fxml"));
+		Scene scene = new Scene(home, 892, 733);
 		stage.setScene(scene);
-		stage.sizeToScene();
 		stage.show();
-
-		originalFrame.setFitWidth(750);
-		originalFrame.setFitHeight(750);
-		originalFrame.setPreserveRatio(true);
-		*/
-
-
-		capture.open(0);
-		CanvasFrame cFrame = new CanvasFrame("Facial Identification", CanvasFrame.getDefaultGamma()/1);
-
-
-		Runnable frameGrabber = new Runnable() {
-			@Override
-			public void run() {
-				Mat frame = new Mat();
-				RectVector faces = new RectVector();
-		
-				// check if the capture is open
-				if (capture.isOpened()) {
-					try {
-						// read the current frame
-						capture.read(frame);
-
-						if(!frame.empty()) {
-							preprocessAndDetectFaces(frame, faces);
-						}
-					}
-					catch (Exception e) {
-						// log the (full) error
-						System.err.println("Exception during the image elaboration: " + e);
-					}
-				}
-
-				// each rectangle in faces is a face: draw them!
-				Rect[] facesArray = faces.get();
-				for (int i = 0; i < facesArray.length; i++)
-					rectangle(frame, facesArray[i].tl(), facesArray[i].br(), new Scalar(0, 255, 0, 1), 3, FILLED, 0);
-
-				Frame toBeShown;
-
-				++App.counter;
-				// Re-Verify face every 50 Frame / 25 FPS = 2 seconds
-				if(facesArray.length > 0 && App.counter >= 50) {
-					App.counter = 0;
-
-					// Get the face only image matrix of current user
-					Mat cropped = getFaceOnlyMat(frame, facesArray);
-
-					// Get the face embedding of current user
-					Mat output = getFaceEmbedding(cropped);
-
-
-
-					// Preprocess the image stored in disk (the path is fetch from the first argument)
-					// and compare with current user
-					// This can be removed later. Store identity as a 128 Dimension embedding instead
-					/*
-					Mat storedFace = imread(App.class.getClassLoader()
-							.getResource(getParameters().getRaw().get(0)).getPath());
-					*/
-					File imgFile = new File(App.class.getClassLoader().getResource("face1.jpg").getFile());
-					Mat storedFace = imread(imgFile.getAbsolutePath());
-					RectVector faces2 = new RectVector();
-
-					// Detect faces in the image provided
-					preprocessAndDetectFaces(storedFace, faces2);
-			
-					Rect[] faces2Array = faces2.get();
-					// Get the face only image matrix of the provided image
-					Mat cropped2 = getFaceOnlyMat(storedFace, faces2Array);
-
-					if(cropped2.empty()) {
-						System.out.println("No face detected in the picture provided");
-						toBeShown = new OpenCVFrameConverter.ToMat().convert(frame);
-						cFrame.showImage(toBeShown);
-						return;
-					}
-
-					// Get the face embedding of the provided picture
-					Mat output2 = getFaceEmbedding(cropped2);
-
-					// Calculate the similarity between the two embeddings
-					double ab = output.dot(output2);
-					double aa = output.dot(output);
-					double bb = output2.dot(output2);
-					double cossim = ab / (Math.sqrt(aa) * Math.sqrt(bb));
-					// Cosine Similarity output space is [-1, 1]
-					System.out.println("COSSIM: " + cossim);
-
-					// Currently only exit the program if the face is recognized
-					if(cossim > THRESHOLD) System.exit(0);
-
-				}
-				toBeShown = new OpenCVFrameConverter.ToMat().convert(frame);
-				cFrame.showImage(toBeShown);
-			}
-		};
-
-		timer = Executors.newSingleThreadScheduledExecutor();
-		// 1000/40 = 25 FPS
-		timer.scheduleAtFixedRate(frameGrabber, 0, 40, TimeUnit.MILLISECONDS);
 	}
 }

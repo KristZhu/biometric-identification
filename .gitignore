@@ -3,3 +3,11 @@
 
 # Ignore Gradle build output directory
 build
+
+.classpath
+.project
+.settings
+bin/main/*
+bin/test/*
+StudentDB
+derby.log
