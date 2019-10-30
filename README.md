@@ -2,35 +2,43 @@
 
 
 ### Building the project
+Make sure you have JDK version 11 installed.
+
 For command line interface:<br/>
 1. **clone** this repo and **cd** inside<br/>
 ```bash
 $ git clone https://github.com/pgabriela/javagroup-biometric-identification
 $ cd javagroup-biometric-identification
 ```
-2. Add your photo to folder *./src/main/resources*<br/>
-3. Build with Gradle<br/>
+2. Build with Gradle<br/>
 ```bash
 $ ./gradlew build
 ```
 <br/>
 
-For IDE, import this project as a Gradle project and build as usual after doing **Step 2** above
+For IDE, import this project as a Gradle project and build as usual after doing **Step 2** above.<br/>
+You may need to run the command below in the root folder for eclipse:<br/>
+Windows:
+```
+$ gradlew.bat eclipse
+```
+
+Linux/MacOS:
+```bash
+$ ./gradlew eclipse
+```
 
 <br/>
 
 ### Running the program
-You need to provide the name of the picture that will be compared
-with the face captured as the first argument.<br/> Currently there are
-2 facial pictures included out of the box (**face1.jpg** and **face2.jpg**).<br/>
-For example, if the picture you put in *./src/main/resources/* previously is named **face3.jpg**, <br/>
-then you can run the program with the command below:
+You need to specify the path to the google credential file as specified below:
 ```bash
-$ ./gradlew run --args="face3.jpg"
+$ GOOGLE_APPLICATION_CREDENTIALS="./Java Group Project-fce92f1db01e.json" ./gradlew run
 ```
-After the webcam is on, the program will just exit if the face is recognized.<br/>
+Click the **Start Detecting** button to start the webcam.<br/>
+After the webcam is on, the view will be changed to be the dashboard if the face is recognized (After printing the emotion likelihood).<br/>
 Otherwise, the webcam will keep capturing.<br/>
-Press Ctrl+C to exit.
+Press Ctrl+C to exit when the webcam is on. Otherwise, just close the GUI window to exit the program.
 
 <br/>
 
