@@ -35,6 +35,7 @@ You need to specify the path to the google credential file as specified below:
 ```bash
 $ GOOGLE_APPLICATION_CREDENTIALS="./Java Group Project-fce92f1db01e.json" ./gradlew run
 ```
+To run inside an IDE, add an environment variable **GOOGLE_APPLICATION_CREDENTIALS** whose value is the path to the google credential file (included inside this project folder at root level).<br/><br/>
 Click the **Start Detecting** button to start the webcam.<br/>
 After the webcam is on, the view will be changed to be the dashboard if the face is recognized (After printing the emotion likelihood).<br/>
 Otherwise, the webcam will keep capturing.<br/>
