@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="stuPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="512.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group.project.AddStudentController">
+   <children>
+      <Pane layoutX="10.0" layoutY="10.0" prefHeight="490.0" prefWidth="430.0" style="-fx-border-color: #005582; -fx-background-color: #0086ad;">
+         <children>
+            <HBox alignment="CENTER" layoutX="115.0" layoutY="14.0" prefHeight="25.0" prefWidth="200.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="200.0" text="STUDENT INFORMATION " textFill="#daf8e3">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="140.0" layoutY="60.0" prefHeight="139.0" prefWidth="142.0">
+               <children>
+                  <ImageView fitHeight="139.0" fitWidth="172.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@face2.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <Pane layoutX="56.0" layoutY="216.0" prefHeight="202.0" prefWidth="309.0" style="-fx-border-color: #daf8e3;">
+               <children>
+                  <Label layoutX="41.0" layoutY="24.0" prefHeight="17.0" prefWidth="69.0" text="ID" textFill="#daf8e3">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="id" layoutX="110.0" layoutY="20.0" promptText="number" />
+                  <Label layoutX="41.0" layoutY="54.0" prefHeight="17.0" prefWidth="69.0" text="Name" textFill="#daf8e3">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="name" layoutX="110.0" layoutY="50.0" promptText="Name" />
+                  <Label layoutX="41.0" layoutY="89.0" prefHeight="17.0" prefWidth="69.0" text="Gender" textFill="#daf8e3">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="gender" layoutX="110.0" layoutY="85.0" promptText="M , F" />
+                  <Label layoutX="41.0" layoutY="126.0" prefHeight="17.0" prefWidth="69.0" text="Grade" textFill="#daf8e3">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="grade" layoutX="110.0" layoutY="122.0" promptText="1 , 2" />
+                  <Label layoutX="41.0" layoutY="161.0" prefHeight="17.0" prefWidth="69.0" text="Major" textFill="#daf8e3">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="major" layoutX="110.0" layoutY="157.0" promptText="MISM, MSPPM,MSIT" />
+               </children>
+            </Pane>
+            <Button fx:id="save" layoutX="147.0" layoutY="437.0" mnemonicParsing="false" onAction="#addStu" style="-fx-border-color: #daf8e3;" text="Save" />
+            <Button fx:id="cancel" layoutX="218.0" layoutY="436.0" mnemonicParsing="false" onAction="#Cancel" style="-fx-border-color: #daf8e3;" text="Cancel" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
