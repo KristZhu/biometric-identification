@@ -51,8 +51,8 @@ public class StudentInfoController {
 		
 	//set image
 		try {
-			File file = new File(getClass().getResource("images/"+ID+".jpg").getFile());
-			Image img = new Image(file.getAbsolutePath());
+			File file = new File(getClass().getClassLoader().getResource("image/"+ID+".jpg").getFile());
+			Image img = new Image(file.toURI().toString());//file.getAbsolutePath()
 			imageview.setImage(img);
 		} catch (Exception e) {
 			e.printStackTrace();
