@@ -44,7 +44,7 @@ public class StartCameraController implements Initializable {
     @FXML
     private AnchorPane cameraPane;
     
-	private FaceRecognizer faceRecognizer;
+    private FaceRecognizer faceRecognizer;
 	private GoogleVisionInterface gVision;
 	private VideoCapture capture = new VideoCapture();
 	private ScheduledExecutorService timer = Executors.newSingleThreadScheduledExecutor();
@@ -60,8 +60,7 @@ public class StartCameraController implements Initializable {
 	private static final String TEMP_PATH = "./tmp.jpg";
 
 	public StartCameraController() throws IOException, GeneralSecurityException {
-		faceRecognizer = new FaceRecognizer("haarcascade_frontalface_alt2.xml", "nn4.small2.v1.t7");
-
+		
 		// Load Google Vision Credential
 		gVision = new GoogleVisionInterface();
 
@@ -84,123 +83,132 @@ public class StartCameraController implements Initializable {
 		currFrame.setY(150 + (583 - newFrame.getHeight()) / 2);
 	}
 
+	public void setFaceRecognizer(FaceRecognizer faceRecognizer) {
+		this.faceRecognizer = faceRecognizer;
+	}
+	
 	@FXML
 	protected void startDetecting(ActionEvent event) throws IOException {
 		capture.open(0);
 
-		Runnable frameGrabber = new Runnable() {
-			@Override
-			public void run() {
-				Mat frame = new Mat();
-				RectVector faces = new RectVector();
-
-				// check if the capture is open
-				if (capture.isOpened()) {
-					try {
-						// read the current frame
-						capture.read(frame);
-
-						if (!frame.empty()) {
-							faceRecognizer.setImage(frame);
-							faceRecognizer.preprocessAndDetectFaces(frame, faces);
-						}
-					} catch (Exception e) {
-						// log the (full) error
-						System.err.println("Exception during the image elaboration: " + e);
-					}
-				}
-
-				// draw all face boundaries
-				Rect[] facesArray = faces.get();
-				for (int i = 0; i < facesArray.length; i++)
-					rectangle(frame, facesArray[i].tl(), facesArray[i].br(), new Scalar(0, 255, 0, 1), 3, FILLED, 0);
-
-				++counter;
-				System.out.println(counter);
-				System.out.println("DETECTED");
-
-				// Re-Verify face every 50 Frame / 25 FPS = 2 seconds
-				if (facesArray.length > 0 && counter >= 50) {
-					counter = 0;
-
-					faceRecognizer.calculateEmbedding(facesArray);
-
-					// Compare with student embeddings in the database
-					HashMap<String, String> emotions = new HashMap<String, String>();
-					Student s = getBestMatchedStudentWithEmotion(emotions);
-
-					if (emotions.size() > 0 && s != null) {
-						// Student Recognized
-
-						// No need webcam anymore
-						capture.release();
-
-						// Change view to dashboard
-						Platform.runLater(() -> {
-							StudentInfoController stuInfoController = fxmlLoaderInfo.getController();
-							System.out.println(stuInfoController + "controller");
-							stuInfoController.setStudentID(s.getId()); // pass parameter
-							dashboardScene = new Scene(dashboard, 892, 733);
-							dashboardScene.getStylesheets()
-									.add(getClass().getClassLoader().getResource("stylesheet.css").toExternalForm());
-
-							((Stage) startBtn.getScene().getWindow()).setScene(dashboardScene); // pass parameter
-
-						});
-
-						System.out.println(s); // print student
-
-						Platform.runLater(() -> {
-							try {
-								timer.shutdown();
-							} catch (Exception e) {
-								e.printStackTrace();
-								System.exit(1);
-							}
-						});
-					} else if (++checkedCount >= ALLOWED_CHECKED_COUNT) {
-						System.out.println("Not Identified");
-						// stop webcam
-						capture.release();
-
-
-						// Mat to byte[]
-						Mat embedding = faceRecognizer.getCurrentEmbedding();
-						byte[] feature = new byte[(int) (embedding.total() * embedding.elemSize())];
-						embedding.data().get(feature);
-						
-						// Change view to alert						
-						Platform.runLater(() -> {
-							
-							AlertController alertController = fxmlLoaderAlert.getController();
-							System.out.println(alertController + "alert controller");
-							alertController.setFace(feature); // pass parameter
-
-							alertController.setImage(frame);
-
-							alertScene = new Scene(alert, 500, 500);
-							((Stage) startBtn.getScene().getWindow()).setScene(alertScene);
-
-						}); 
-
-					}
-				}
-
-				byte[] toBeShown = new byte[(int) frame.total() * frame.channels()];
-				imencode(".png", frame, toBeShown);
-				Image newFrame = new Image(new ByteArrayInputStream(toBeShown));
-				Platform.runLater(() -> {
-					currFrame.setFitWidth(newFrame.getWidth());
-					currFrame.setFitHeight(newFrame.getHeight());
-					currFrame.setX((892 - newFrame.getWidth()) / 2);
-					currFrame.setY(150 + (583 - newFrame.getHeight()) / 2);
-					currFrame.imageProperty().set(newFrame);
-				});
-			}
-		};
 
 		// 1000/40 = 25 FPS
-		timer.scheduleAtFixedRate(frameGrabber, 0, 40, TimeUnit.MILLISECONDS);
+		timer.scheduleAtFixedRate(() -> {
+			Mat frame = new Mat();
+			RectVector faces = new RectVector();
+
+			// check if the capture is open
+			if (capture.isOpened()) {
+				try {
+					// read the current frame
+					capture.read(frame);
+
+					if (!frame.empty()) {
+						faceRecognizer.setImage(frame);
+						faceRecognizer.preprocessAndDetectFaces(frame, faces);
+					}
+				} catch (Exception e) {
+					// log the (full) error
+					System.err.println("Exception during the image elaboration: " + e);
+				}
+			}
+
+			// Get all faces boundaries
+			Rect[] facesArray = faces.get();
+			
+			// Copy the original frame to be saved
+			Mat frameOri = new Mat();
+			frame.copyTo(frameOri);
+			
+			// draw all face boundaries
+			for (int i = 0; i < facesArray.length; i++)
+				rectangle(frame, facesArray[i].tl(), facesArray[i].br(), new Scalar(0, 255, 0, 1), 3, FILLED, 0);
+			
+
+			++counter;
+			System.out.println(counter);
+			System.out.println("DETECTED");
+
+			// Re-Verify face every 50 Frame / 25 FPS = 2 seconds
+			if (facesArray.length > 0 && counter >= 50) {
+				counter = 0;
+
+				faceRecognizer.calculateEmbedding(facesArray);
+
+				// Compare with student embeddings in the database
+				HashMap<String, String> emotions = new HashMap<String, String>();
+				Student s = getBestMatchedStudentWithEmotion(emotions);
+
+				if (emotions.size() > 0 && s != null) {
+					// Student Recognized
+
+					// No need webcam anymore
+					capture.release();
+
+					// Change view to dashboard
+					Platform.runLater(() -> {
+						StudentInfoController stuInfoController = fxmlLoaderInfo.getController();
+						System.out.println(stuInfoController + "controller");
+						stuInfoController.setStudentID(s.getId()); // pass parameter
+						dashboardScene = new Scene(dashboard, 892, 733);
+						dashboardScene.getStylesheets()
+								.add(getClass().getClassLoader().getResource("stylesheet.css").toExternalForm());
+
+						((Stage) startBtn.getScene().getWindow()).setScene(dashboardScene); // pass parameter
+
+					});
+
+					System.out.println(s); // print student
+
+					Platform.runLater(() -> {
+						try {
+							timer.shutdown();
+						} catch (Exception e) {
+							e.printStackTrace();
+							System.exit(1);
+						}
+					});
+				} else if (++checkedCount >= ALLOWED_CHECKED_COUNT) {
+					System.out.println("Not Identified");
+					// stop webcam
+					capture.release();
+
+
+					// Mat to byte[]
+					Mat embedding = faceRecognizer.getCurrentEmbedding();
+					byte[] feature = new byte[(int) (embedding.total() * embedding.elemSize())];
+					embedding.data().get(feature);
+					
+					// Change view to alert						
+					Platform.runLater(() -> {
+						
+						AlertController alertController = fxmlLoaderAlert.getController();
+						System.out.println(alertController + "alert controller");
+						alertController.setFace(feature); // pass parameter
+
+						alertController.setImage(frameOri);
+
+						alertScene = new Scene(alert, 500, 500);
+						((Stage) startBtn.getScene().getWindow()).setScene(alertScene);
+
+					}); 
+
+				}
+			}
+
+			
+			byte[] toBeShown = new byte[(int) frame.total() * frame.channels()];
+			imencode(".png", frame, toBeShown);
+			Image newFrame = new Image(new ByteArrayInputStream(toBeShown));
+			Platform.runLater(() -> {
+				currFrame.setFitWidth(newFrame.getWidth());
+				currFrame.setFitHeight(newFrame.getHeight());
+				currFrame.setX((892 - newFrame.getWidth()) / 2);
+				currFrame.setY(150 + (583 - newFrame.getHeight()) / 2);
+				currFrame.imageProperty().set(newFrame);
+			});
+		}, 0, 40, TimeUnit.MILLISECONDS);
+
 	}
 
 	private Student getBestMatchedStudentWithEmotion(HashMap<String, String> emos) {

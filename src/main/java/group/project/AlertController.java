@@ -54,11 +54,11 @@ public class AlertController {
 		frameMat = frame;
 		try {
 
-			File f = new File("src/main/resources/image");
+			File f = new File(getClass().getClassLoader().getResource("image").getFile());
 			if (Files.notExists(f.toPath())) {
 				Files.createDirectory(f.toPath());
 			}
-			imwrite("src/main/resources/image/" + "test.jpg", frameMat);  // thread issue!!!
+			imwrite(f.getAbsolutePath() + "/test.jpg", frameMat);  // thread issue!!!
 			System.out.println("test.jpg generated!");
 
 		} catch (Exception e) {
@@ -66,10 +66,14 @@ public class AlertController {
 			System.exit(1);
 		}
 		
+		
+		
 		try {
-			Image img = new Image(getClass().getResource("/image/test.jpg").toURI().toString()); //getClass().getResource("/image/test.jpg").toURI().toString()
+			File f = new File(getClass().getClassLoader().getResource("image/test.jpg").getFile());
+			//Image img = new Image(getClass().getResource("image/test.jpg").toURI().toString()); //getClass().getResource("/image/test.jpg").toURI().toString()
+			Image img = new Image(f.toURI().toString());
 			image.setImage(img);
-		} catch (URISyntaxException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} // src/main/resources/image/test.jpg
 

@@ -2,6 +2,7 @@ package group.project;
 
 import javafx.event.ActionEvent;
 
+import java.io.File;
 import java.net.URISyntaxException;
 
 import javafx.beans.value.ChangeListener;
@@ -43,16 +44,17 @@ public class StudentInfoController {
 
     public void setStudentID(String id) {
         ID = id;
-		Student s1 = new DAO().getStudentByID(ID); // pass ID , suppose id = 1
+		Student s1 = DAO.getStudentByID(ID); // pass ID , suppose id = 1
 		System.out.println(ID);
 		StudentID.setText(s1.getId()); 
 		name.setText(s1.getName());
 		
 	//set image
 		try {
-			Image img = new Image(getClass().getResource("/image/"+ID+".jpg").toURI().toString());
+			File file = new File(getClass().getResource("images/"+ID+".jpg").getFile());
+			Image img = new Image(file.getAbsolutePath());
 			imageview.setImage(img);
-		} catch (URISyntaxException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} // src/main/resources/image/test.jpg
     }

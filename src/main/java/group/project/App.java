@@ -12,7 +12,7 @@ import javafx.scene.layout.Pane;
 
 public class App extends Application {
 	public static void main(String[] args) {
-		//DAO.deleteAllStudents();
+		DAO.deleteAllStudents();
 		System.out.println("Currently there are " + DAO.getAllStudents().size() + " student(s) in the database");
 
 		for (Student s : DAO.getAllStudents()) {

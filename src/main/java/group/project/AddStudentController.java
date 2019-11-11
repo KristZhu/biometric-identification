@@ -4,6 +4,7 @@ package group.project;
 import static org.bytedeco.opencv.global.opencv_imgcodecs.imwrite;
 
 import java.io.File;
+import java.net.URL;
 import java.nio.file.Files;
 
 import com.fasterxml.jackson.core.JsonFactory.Feature;
@@ -76,8 +77,10 @@ public class AddStudentController {
 		System.out.println("New student added! Now " + DAO.getAllStudents().size() + " student(s) in the database");
 		
 		// rename student image
-		File oldfile =new File("src/main/resources/image/test.jpg");
-        File newfile =new File("src/main/resources/image/"+stuID+".jpg");
+		//File oldfile =new File("images/test.jpg");
+        //File newfile =new File("images/"+stuID+".jpg");
+		File oldfile = new File(getClass().getClassLoader().getResource("image/test.jpg").getFile());
+		File newfile = new File(getClass().getClassLoader().getResource("image").getFile(), stuID + ".jpg");
         
         if(oldfile.renameTo(newfile)){
             System.out.println("Success! test.jpg renamed!!");

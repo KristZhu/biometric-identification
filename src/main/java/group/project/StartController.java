@@ -1,13 +1,18 @@
 package group.project;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -25,6 +30,8 @@ public class StartController {
     
     @FXML
     private AnchorPane startPane;
+    
+    FaceRecognizer faceRecognizer;
 
     @FXML
     void startCamera(ActionEvent event) {
@@ -46,7 +53,11 @@ public class StartController {
     
     void loadWindow(String name) {
     	try {
-			Parent parent=FXMLLoader.load(getClass().getClassLoader().getResource(name));
+    		FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(name));
+			Parent parent = loader.load();
+    		if(name.equals("StartCamera.fxml")) {
+    			((StartCameraController)loader.getController()).setFaceRecognizer(faceRecognizer);
+    		}
 			Stage stage = new Stage(StageStyle.DECORATED);
 			//stage.setTitle("");
 			stage.setScene(new Scene(parent));
@@ -57,5 +68,10 @@ public class StartController {
     	
     	
     }
+    
+    public StartController() throws IOException {
+		faceRecognizer = new FaceRecognizer("haarcascade_frontalface_alt2.xml", "nn4.small2.v1.t7");
+		System.out.println("DEBUG");
+	}
 }
 
