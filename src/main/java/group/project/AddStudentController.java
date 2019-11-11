@@ -13,6 +13,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -43,6 +45,9 @@ public class AddStudentController {
 
     @FXML
     private TextField id;
+    
+    @FXML
+    private ImageView imageview;
 
     private byte[] feature;
     
@@ -51,6 +56,18 @@ public class AddStudentController {
         System.out.println("New feature Saved in Stu");
 
     }
+    
+	//set image
+    public void setImage() {
+    	try {
+			File f = new File(getClass().getClassLoader().getResource("image/test.jpg").getFile());
+			Image img = new Image(f.toURI().toString());
+			imageview.setImage(img);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+    }
+
     
 
     @FXML

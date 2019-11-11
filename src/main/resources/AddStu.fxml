@@ -30,7 +30,7 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="140.0" layoutY="60.0" prefHeight="139.0" prefWidth="142.0">
                <children>
-                  <ImageView fitHeight="139.0" fitWidth="172.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imageview" fitHeight="139.0" fitWidth="172.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@face2.jpg" />
                      </image>

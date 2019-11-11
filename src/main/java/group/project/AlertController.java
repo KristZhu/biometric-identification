@@ -90,6 +90,7 @@ public class AlertController {
 				AddStudentController addStudentController = fxmlLoaderStuFxmlLoader.getController();
 				// System.out.println ("add stu controller");
 				addStudentController.setFeature(face);
+				addStudentController.setImage();
 				Scene stuScene = new Scene(stuParent);
 				((Stage) add.getScene().getWindow()).setScene(stuScene);
 			} catch (IOException e) {
