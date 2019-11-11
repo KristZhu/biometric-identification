@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="startPane" prefHeight="249.0" prefWidth="295.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group.project.StartController">
+   <children>
+      <Button fx:id="camera" layoutX="66.0" layoutY="54.0" mnemonicParsing="false" onAction="#startCamera" prefHeight="25.0" prefWidth="163.0" text="StartCamera" />
+      <Button fx:id="exit" layoutX="66.0" layoutY="174.0" mnemonicParsing="false" onAction="#quit" prefHeight="25.0" prefWidth="163.0" text="Exit" />
+      <Button fx:id="report" layoutX="66.0" layoutY="112.0" mnemonicParsing="false" onAction="#showReport" prefHeight="25.0" prefWidth="163.0" text="ShowReport" />
+   </children>
+</AnchorPane>

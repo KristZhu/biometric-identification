@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -13,7 +21,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="733.0" prefWidth="892.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="733.0" prefWidth="892.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group.project.StudentInfoController">
    <children>
       <VBox layoutX="1.0" prefHeight="733.0" prefWidth="247.0" styleClass="sidebar">
          <children>
@@ -27,7 +35,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="176.0" prefWidth="247.0">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imageview" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@face2.jpg" />
                      </image>
@@ -136,12 +144,12 @@
                         <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="StudentID" layoutX="90.0" layoutY="40.0" promptText="ID" text="ID">
+                  <TextField fx:id="StudentID" layoutX="90.0" layoutY="40.0" promptText="ID">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="12.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="LastName" layoutX="89.0" layoutY="72.0" prefHeight="23.0" prefWidth="208.0" promptText="LastName" text="LastName">
+                  <TextField fx:id="name" layoutX="89.0" layoutY="72.0" prefHeight="23.0" prefWidth="208.0" promptText="LastName">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="12.0" />
                      </font>
@@ -236,8 +244,16 @@
                            <font>
                               <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                            </font>
+                           <VBox.margin>
+                              <Insets left="15.0" />
+                           </VBox.margin>
                         </Label>
-                        <PieChart title="Pie Chart" />
+                        <PieChart fx:id="piechart" labelLineLength="1.0" legendVisible="false" prefHeight="155.0" prefWidth="265.0" />
+                        <ChoiceBox fx:id="choicebox" prefHeight="25.0" prefWidth="109.0">
+                           <VBox.margin>
+                              <Insets left="90.0" />
+                           </VBox.margin>
+                        </ChoiceBox>
                      </children>
                   </VBox>
                </children>
@@ -260,6 +276,14 @@
                               <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                            </font>
                         </Label>
+                        <BarChart fx:id="barChart">
+                          <xAxis>
+                            <CategoryAxis label="Reason" side="BOTTOM" fx:id="x" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis fx:id="y" label="Number" side="LEFT" upperBound="5.0" />
+                          </yAxis>
+                        </BarChart>
                      </children>
                   </VBox>
                </children></Pane>

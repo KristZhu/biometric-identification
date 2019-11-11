@@ -3,7 +3,6 @@
  */
 package group.project;
 
-
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -11,20 +10,23 @@ import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 
-
 public class App extends Application {
 	public static void main(String[] args) {
-		System.out.println("Currently there are " +
-				DAO.getAllStudents().size() + " student(s) in the database");
+		//DAO.deleteAllStudents();
+		System.out.println("Currently there are " + DAO.getAllStudents().size() + " student(s) in the database");
+
+		for (Student s : DAO.getAllStudents()) {
+			System.out.println(s);
+		}
 		Application.launch(args);
 	}
 
-
 	@Override
 	public void start(Stage stage) throws IOException {
-		Pane home = FXMLLoader.load(App.class.getClassLoader().getResource("Home.fxml"));
-		Scene scene = new Scene(home, 892, 733);
+		Pane home = FXMLLoader.load(App.class.getClassLoader().getResource("Start.fxml"));  // change pane to parent
+		Scene scene = new Scene(home, 400, 500);
 		stage.setScene(scene);
 		stage.show();
 	}
+	
 }
