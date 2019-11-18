@@ -24,6 +24,7 @@ import static org.bytedeco.opencv.global.opencv_objdetect.*;
 import static org.bytedeco.opencv.global.opencv_dnn.*;
 
 
+// Ref: https://opencv-java-tutorials.readthedocs.io/en/latest/06-face-detection-and-tracking.html
 public class FaceRecognizer {
 	public static final double THRESHOLD = 0.80;
 	private CascadeClassifier faceCascade;
