@@ -53,7 +53,7 @@ public class StartController {
     	loadWindow("Report.fxml");
     }
     
-    
+    // load desired window
     void loadWindow(String name) {
     	try {
     		FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(name));
@@ -62,7 +62,6 @@ public class StartController {
     			((StartCameraController)loader.getController()).setFaceRecognizer(faceRecognizer);
     		}
 			Stage stage = new Stage(StageStyle.DECORATED);
-			//stage.setTitle("");
 			stage.setScene(new Scene(parent));
 			stage.show();
 		} catch (IOException e) {

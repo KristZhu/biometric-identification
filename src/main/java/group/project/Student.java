@@ -14,7 +14,7 @@ public class Student {
 	private String id;
 	private String name;
 	private String gender; // M F
-	private String major; // MISM MSPPS MSIT
+	private String major; // MISM MSPPM MSIT
 	private String grade; // 1 2
 	private Map<Integer, List<Date>> visits = new HashMap<Integer, List<Date>>();
 	

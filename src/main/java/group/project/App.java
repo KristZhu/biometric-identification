@@ -15,7 +15,8 @@ public class App extends Application {
 		//DAO.deleteAllStudents();
 		//DAO.deleteAllVisits();
 		System.out.println("Currently there are " + DAO.getAllStudents().size() + " student(s) in the database");
-
+        
+		// display every student information
 		for (Student s : DAO.getAllStudents()) {
 			System.out.println(s);
 		}

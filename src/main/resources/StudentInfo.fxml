@@ -22,9 +22,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+
 <AnchorPane prefHeight="680.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group.project.StudentInfoController">
    <children>
       <VBox layoutX="4.0" layoutY="4.0" prefHeight="673.0" prefWidth="247.0" style="-fx-background-color: #005582; -fx-border-color: #daf8e3;">
+<AnchorPane prefHeight="684.0" prefWidth="992.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group.project.StudentInfoController">
+   <children>
+      <VBox layoutX="4.0" layoutY="4.0" prefHeight="673.0" prefWidth="344.0" style="-fx-background-color: #005582; -fx-border-color: #daf8e3;">
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="46.0" prefWidth="247.0">
                <children>
@@ -51,6 +55,7 @@
                         <Font name="Garamond Bold" size="20.0" />
                      </font>
                   </Label>
+
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="34.0" prefWidth="245.0">
@@ -63,61 +68,48 @@
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="39.0" prefWidth="245.0" />
-            <HBox alignment="CENTER" layoutX="11.0" layoutY="315.0" prefHeight="197.0" prefWidth="245.0">
+            <HBox alignment="CENTER" layoutX="11.0" layoutY="315.0" prefHeight="209.0" prefWidth="335.0">
                <children>
-                  <Pane prefHeight="206.0" prefWidth="215.0" style="-fx-border-color: #daf8e3;">
+                  <Pane prefHeight="209.0" prefWidth="319.0" style="-fx-border-color: #daf8e3;">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="21.0" prefHeight="18.0" prefWidth="190.0" text="FACE RECOGNITION" textFill="#daf8e3">
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="21.0" prefHeight="18.0" prefWidth="306.0" text="FACE RECOGNITION" textFill="#daf8e3">
                            <font>
                               <Font name="Garamond Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label layoutX="30.0" layoutY="53.0" prefHeight="17.0" prefWidth="50.0" text="Happy" textFill="#daf8e3">
+                        <Label layoutX="18.0" layoutY="53.0" prefHeight="17.0" prefWidth="50.0" text="Happy" textFill="#daf8e3">
                            <font>
                               <Font name="System Bold Italic" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="HappyScale1" layoutX="98.0" layoutY="53.0" prefHeight="25.0" prefWidth="99.0" textFill="#daf8e3">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="30.0" layoutY="84.0" prefHeight="17.0" prefWidth="50.0" text="Sad" textFill="#daf8e3">
+
+                        <Label fx:id="HappyScale1" layoutX="92.0" layoutY="53.0" prefHeight="25.0" prefWidth="214.0" textFill="#daf8e3" />
+                        <Label layoutX="19.0" layoutY="89.0" prefHeight="17.0" prefWidth="50.0" text="Sad" textFill="#daf8e3">
                            <font>
                               <Font name="System Bold Italic" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="SadScale1" layoutX="98.0" layoutY="84.0" prefHeight="25.0" prefWidth="79.0" textFill="#daf8e3">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="30.0" layoutY="118.0" prefHeight="25.0" prefWidth="71.0" text="Surprise" textFill="#daf8e3">
+                        <Label fx:id="SadScale1" layoutX="99.0" layoutY="87.0" prefHeight="25.0" prefWidth="208.0" textFill="#daf8e3" />
+                        <Label layoutX="18.0" layoutY="120.0" prefHeight="25.0" prefWidth="71.0" text="Surprise" textFill="#daf8e3">
                            <font>
                               <Font name="System Bold Italic" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="SurpriseScale1" layoutX="95.0" layoutY="118.0" prefHeight="25.0" prefWidth="99.0" textFill="#daf8e3">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="30.0" layoutY="153.0" prefHeight="17.0" prefWidth="50.0" text="Anger" textFill="#daf8e3">
+
+                        <Label fx:id="SurpriseScale1" layoutX="95.0" layoutY="120.0" prefHeight="25.0" prefWidth="214.0" textFill="#daf8e3" />
+                        <Label layoutX="18.0" layoutY="153.0" prefHeight="17.0" prefWidth="50.0" text="Anger" textFill="#daf8e3">
                            <font>
                               <Font name="System Bold Italic" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="AngerScale1" layoutX="96.0" layoutY="153.0" prefHeight="25.0" prefWidth="85.0" textFill="#daf8e3">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
+                        <Label fx:id="AngerScale1" layoutX="96.0" layoutY="153.0" prefHeight="25.0" prefWidth="214.0" textFill="#daf8e3" />
                      </children>
                   </Pane>
                </children>
             </HBox>
          </children></VBox>
-      <VBox layoutX="258.0" layoutY="4.0" prefHeight="673.0" prefWidth="634.0" style="-fx-border-color: #005582;">
+
+      <VBox layoutX="350.0" layoutY="4.0" prefHeight="673.0" prefWidth="634.0" style="-fx-border-color: #005582;">
          <children>
             <Pane prefHeight="225.0" prefWidth="589.0" styleClass="pane">
                <children>
@@ -126,6 +118,7 @@
                         <Font name="Garamond Bold" size="18.0" />
                      </font>
                   </Label>
+
                   <TextField fx:id="studentID" layoutX="188.0" layoutY="48.0" promptText="ID">
                      <font>
                         <Font name="Garamond Bold" size="14.0" />
@@ -172,6 +165,13 @@
                      </font>
                   </Label>
                   <Label layoutX="109.0" layoutY="84.0" prefHeight="17.0" prefWidth="71.0" text="Name    :" textFill="#0086ad">
+
+                  <Label layoutX="109.0" layoutY="51.0" text="ID          :" textFill="#0086ad">
+                     <font>
+                        <Font name="Garamond Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="109.0" layoutY="84.0" prefHeight="17.0" prefWidth="71.0" text="Name    :" textFill="#0086ad">
                      <font>
                         <Font name="Garamond Bold" size="14.0" />
                      </font>
@@ -191,12 +191,41 @@
                         <Font name="Garamond Bold" size="14.0" />
                      </font>
                   </Label>
+                  <Label fx:id="studentID" layoutX="188.0" layoutY="46.0" prefHeight="28.0" prefWidth="169.0" text="ID">
+                     <font>
+                        <Font name="Garamond Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="109.0" layoutY="150.0" text="Year       :" textFill="#0086ad">
+
+                  <Label fx:id="nameText" layoutX="188.0" layoutY="80.0" prefHeight="25.0" prefWidth="312.0" text="Name">
+
+                     <font>
+                        <Font name="Garamond Bold" size="14.0" />
+                     </font>
+                  </Label>
+
+                  <Label fx:id="gender" layoutX="188.0" layoutY="114.0" prefHeight="23.0" prefWidth="208.0" text="Gender">
+                     <font>
+                        <Font name="Garamond Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="year" layoutX="188.0" layoutY="147.0" prefHeight="23.0" prefWidth="208.0" text="Year">
+                     <font>
+                        <Font name="Garamond Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="major" layoutX="188.0" layoutY="181.0" prefHeight="25.0" prefWidth="312.0" text="Major">
+                     <font>
+                        <Font name="Garamond Bold" size="14.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
-            <HBox prefHeight="28.0" prefWidth="632.0" />
-            <Pane prefHeight="236.0" prefWidth="632.0" styleClass="pane">
+            <HBox prefHeight="11.0" prefWidth="632.0" />
+            <Pane prefHeight="318.0" prefWidth="632.0" styleClass="pane">
                <children>
-                  <VBox layoutX="14.0" layoutY="16.0" prefHeight="208.0" prefWidth="296.0" style="-fx-border-color: #00c2c7;" styleClass="vbox">
+                  <VBox layoutX="14.0" layoutY="16.0" prefHeight="288.0" prefWidth="296.0" style="-fx-border-color: #00c2c7;" styleClass="vbox">
                      <children>
                         <Label alignment="CENTER" contentDisplay="TOP" prefHeight="30.0" prefWidth="294.0" text="CATEGORY" textFill="#0086ad">
                            <font>
@@ -211,9 +240,12 @@
                             <NumberAxis fx:id="y" side="LEFT" />
                           </yAxis>
                         </BarChart>
+
+                        <Label prefHeight="28.0" prefWidth="294.0" text="     1:Borrow Stapler  2: Visit Nereshnee  3:Visit Kim" />
+                        <Label prefHeight="28.0" prefWidth="294.0" text="     4: Complain  5: Collect Assignment  6:Others" />
                      </children>
                   </VBox>
-                  <VBox layoutX="327.0" layoutY="16.0" prefHeight="208.0" prefWidth="289.0" style="-fx-border-color: #00c2c7;" styleClass="vbox">
+                  <VBox layoutX="327.0" layoutY="16.0" prefHeight="288.0" prefWidth="289.0" style="-fx-border-color: #00c2c7;" styleClass="vbox">
                      <children>
                         <Label alignment="CENTER" contentDisplay="TOP" prefHeight="28.0" prefWidth="290.0" text="RECEPTION VISIT DETAILS" textFill="#0086ad">
                            <font>
@@ -243,9 +275,10 @@
                </children>
             </Pane>
             <HBox prefHeight="11.0" prefWidth="632.0" />
-            <Pane prefHeight="218.0" prefWidth="632.0" styleClass="pane">
+
+            <Pane prefHeight="153.0" prefWidth="632.0" styleClass="pane">
                <children>
-                  <VBox layoutX="327.0" layoutY="13.0" prefHeight="184.0" prefWidth="289.0" style="-fx-border-color: #00c2c7;" styleClass="vbox">
+                  <VBox layoutX="327.0" layoutY="14.0" prefHeight="119.0" prefWidth="289.0" style="-fx-border-color: #00c2c7;" styleClass="vbox">
                      <children>
                         <Label alignment="CENTER" contentDisplay="TOP" prefHeight="30.0" prefWidth="283.0" text="ANNOUNCEMENTS" textFill="#0086ad">
                            <font>
@@ -259,7 +292,7 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox layoutX="15.0" layoutY="14.0" prefHeight="184.0" prefWidth="296.0" style="-fx-border-color: #00c2c7;" styleClass="vbox">
+                  <VBox layoutX="14.0" layoutY="14.0" prefHeight="119.0" prefWidth="296.0" style="-fx-border-color: #00c2c7;" styleClass="vbox">
                      <children>
                         <Label alignment="CENTER" contentDisplay="TOP" prefHeight="30.0" prefWidth="296.0" text="ALERT" textFill="#0086ad">
                            <font>

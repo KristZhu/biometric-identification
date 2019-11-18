@@ -42,19 +42,19 @@ public class StudentInfoController {
     private Label nameLabel;
     
 	@FXML
-    private TextField nameText;
+    private Label nameText;
 
     @FXML
-    private TextField studentID;
+    private Label  studentID;
     
     @FXML
-    private TextField gender;
+    private Label  gender;
 
     @FXML
-    private TextField year;
+    private Label  year;
 
     @FXML
-    private TextField major;
+    private Label  major;
 
     @FXML
     private Label AngerScale1;
@@ -103,8 +103,8 @@ public class StudentInfoController {
     public void setStudentID(String id) {
         ID = id;
 		Student s1 = DAO.getStudentByID(ID); // pass ID , suppose id = 1
+      
 		//set info
-		System.out.println("HERE");
 		studentID.setText(s1.getId()); 
 		nameText.setText(s1.getName());
 		gender.setText(s1.getGender());
@@ -144,7 +144,7 @@ public class StudentInfoController {
     }
     
     
-	// alert message
+	// generate alert message
 	private String genMessage() {			
 		String[] strList = {"You have a JAVA quiz tommorow!",
 				"Remember to respond Prof.Murli",
@@ -155,6 +155,7 @@ public class StudentInfoController {
 		return strList[i];
 	}
 	
+	// display reason bar chart
 	public void ReasonBarChart(Student s) {
 		int r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0;
 		
@@ -183,7 +184,7 @@ public class StudentInfoController {
 		barChart.getData().addAll(set);		
 	}
 
-	
+	// get the last time of visit
 	private static Date lastVisit(Student student) {
 		List<Date> dates = new ArrayList<Date>();				
 		for(int i=1; i<=6; i++) {
@@ -193,6 +194,7 @@ public class StudentInfoController {
 		return dates.get(dates.size()-1);
 	}
 	
+	// get the total amount of visit 
 	private static int getVisitsAmount(Student student) {
 		int amount = 0;
 		Map<Integer, List<Date>> visits = student.getAllVisits();
