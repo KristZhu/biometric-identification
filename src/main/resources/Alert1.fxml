@@ -18,11 +18,11 @@
    <children>
       <Pane layoutX="10.0" layoutY="10.0" prefHeight="346.0" prefWidth="430.0" style="-fx-border-color: #005582; -fx-background-color: #0086ad;">
          <children>
-            <HBox alignment="CENTER" layoutX="115.0" layoutY="14.0" prefHeight="25.0" prefWidth="200.0">
+            <HBox alignment="CENTER" layoutX="56.0" layoutY="14.0" prefHeight="29.0" prefWidth="309.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="200.0" text="Alert: Face not recognised! " textFill="#daf8e3">
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="278.0" text="Alert: Face not recognised! " textFill="#daf8e3">
                      <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="Garamond Bold" size="18.0" />
                      </font>
                   </Label>
                </children>
@@ -39,11 +39,11 @@
             </Pane>
             <Button fx:id="add" layoutX="128.0" layoutY="288.0" mnemonicParsing="false" onAction="#addStudent" prefHeight="27.0" prefWidth="71.0" style="-fx-border-color: #d3d3d3;" text="Add">
                <font>
-                  <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+                  <Font name="Garamond Bold" size="14.0" />
                </font></Button>
-            <Button fx:id="exit" layoutX="216.0" layoutY="288.0" mnemonicParsing="false" onAction="#quit" prefHeight="27.0" prefWidth="71.0" style="-fx-border-color: #d3d3d3;" text="Exit">
+            <Button fx:id="exit" layoutX="216.0" layoutY="287.0" mnemonicParsing="false" onAction="#quit" prefHeight="27.0" prefWidth="71.0" style="-fx-border-color: #d3d3d3;" text="Exit">
                <font>
-                  <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+                  <Font name="Garamond Bold" size="14.0" />
                </font></Button>
          </children>
       </Pane>
