@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 import org.bytedeco.opencv.opencv_core.Mat;
@@ -47,7 +49,6 @@ public class AlertController {
 	public void setFace(byte[] feature) {
 		face = feature;
 		System.out.println("New feature Saved");
-		// System.out.println(feature);
 	}
 
 	// save face into test.jpg
@@ -55,10 +56,13 @@ public class AlertController {
 		frameMat = frame;
 		try {
 
-			File f = new File(getClass().getClassLoader().getResource("image").getFile());
-			if (Files.notExists(f.toPath())) {
-				Files.createDirectory(f.toPath());
+			URL imageFolder = getClass().getClassLoader().getResource("image");
+			if (imageFolder == null) {
+			        Path base = Paths.get(getClass().getResource("/").getPath());
+			        Path newFolder = Paths.get(base.toAbsolutePath() + "/image/");
+			        Files.createDirectory(newFolder);
 			}
+			File f = new File(getClass().getClassLoader().getResource("image").getFile());
 			imwrite(f.getAbsolutePath() + "/test.jpg", frameMat);
 			System.out.println("test.jpg generated!");
 

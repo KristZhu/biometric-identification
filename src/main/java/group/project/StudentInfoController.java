@@ -103,7 +103,7 @@ public class StudentInfoController {
     public void setStudentID(String id) {
         ID = id;
 		Student s1 = DAO.getStudentByID(ID); // pass ID , suppose id = 1
-		
+      
 		//set info
 		studentID.setText(s1.getId()); 
 		nameText.setText(s1.getName());

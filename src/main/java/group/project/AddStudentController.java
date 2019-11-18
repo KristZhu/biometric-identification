@@ -107,7 +107,7 @@ public class AddStudentController {
 
 	}
 
-	@FXML  // quit
+	@FXML
 	void Cancel(ActionEvent event) {
 		Stage stage = (Stage) stuPane.getScene().getWindow();
 		stage.close();

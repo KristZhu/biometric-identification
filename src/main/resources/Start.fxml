@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="startPane" prefHeight="339.0" prefWidth="382.0" style="-fx-background-image: C:\Users\Samsung\Downloads\javagroup-biometric-identification-master\src\main\resources\lookandfeel.jpg;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group.project.StartController">
+<AnchorPane fx:id="startPane" prefHeight="339.0" prefWidth="382.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group.project.StartController">
    <children>
       <Pane layoutX="42.0" layoutY="37.0" prefHeight="262.0" prefWidth="299.0" style="-fx-border-color: #0086ad;">
          <children>

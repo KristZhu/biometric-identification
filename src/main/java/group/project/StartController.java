@@ -73,7 +73,6 @@ public class StartController {
     
     public StartController() throws IOException {
 		faceRecognizer = new FaceRecognizer("haarcascade_frontalface_alt2.xml", "nn4.small2.v1.t7");
-		System.out.println("DEBUG");
 	}
 }
 

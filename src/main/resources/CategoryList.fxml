@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+
 <AnchorPane fx:id="reasonPane" prefHeight="396.0" prefWidth="479.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group.project.CategoryListController">
    <children>
       <Pane layoutX="19.0" layoutY="19.0" prefHeight="356.0" prefWidth="441.0" style="-fx-border-color: #0086ad;">
@@ -21,6 +22,7 @@
                </font>
             </Button>
             <VBox layoutX="40.0" layoutY="79.0" prefHeight="33.0" prefWidth="219.0" />
+
             <Label fx:id="label" layoutX="46.0" layoutY="57.0" prefHeight="39.0" prefWidth="219.0" text="Label" />
             <ChoiceBox fx:id="choiceBox" layoutX="44.0" layoutY="122.0" prefHeight="51.0" prefWidth="352.0" />
          </children>

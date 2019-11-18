@@ -52,16 +52,21 @@ public class GoogleVisionInterface {
 		// Due to a bug: requests to Vision API containing large images fail when GZipped.
 		annotate.setDisableGZipContent(true);
 
-		BatchAnnotateImagesResponse batchResponse = annotate.execute();
-		assert batchResponse.getResponses().size() == 1;
-		AnnotateImageResponse response = batchResponse.getResponses().get(0);
-		if(response.getFaceAnnotations() == null) {
-			throw new IOException(
-				response.getError() != null
-					? response.getError().getMessage()
-					: "Unknown error getting image annotations");
+		try {
+			BatchAnnotateImagesResponse batchResponse = annotate.execute();
+			assert batchResponse.getResponses().size() == 1;
+			AnnotateImageResponse response = batchResponse.getResponses().get(0);
+			if(response.getFaceAnnotations() == null) {
+				throw new IOException(
+					response.getError() != null
+						? response.getError().getMessage()
+						: "Unknown error getting image annotations");
+			}
+			return response.getFaceAnnotations();
+		} catch(Exception e) {
+			System.err.println("Internet connection is needed to detect emotions");
+			return null;
 		}
-		return response.getFaceAnnotations();
 	}
 
 	private String beautify(String likelihood) {
@@ -86,11 +91,19 @@ public class GoogleVisionInterface {
 		HashMap<String, String> emotions = new HashMap<>();
 		try {
 			List<FaceAnnotation> annotated = detectFaces(path);
-			// Only get the first image annotation
-			emotions.put("JOY", beautify(annotated.get(0).getJoyLikelihood()));
-			emotions.put("SORROW", beautify(annotated.get(0).getSorrowLikelihood()));
-			emotions.put("ANGER", beautify(annotated.get(0).getAngerLikelihood()));
-			emotions.put("SURPRISE", beautify(annotated.get(0).getSurpriseLikelihood()));
+			if(annotated != null) {
+				// Only get the first image annotation
+				emotions.put("JOY", beautify(annotated.get(0).getJoyLikelihood()));
+				emotions.put("SORROW", beautify(annotated.get(0).getSorrowLikelihood()));
+				emotions.put("ANGER", beautify(annotated.get(0).getAngerLikelihood()));
+				emotions.put("SURPRISE", beautify(annotated.get(0).getSurpriseLikelihood()));
+			} else {
+				// if cannot get face annotations (may be due to no internet connection)
+				emotions.put("JOY", "Unknown");
+				emotions.put("SORROW", "Unknown");
+				emotions.put("ANGER", "Unknown");
+				emotions.put("SURPRISE", "Unknown");
+			}
 		} catch(IOException e) {
 			System.err.println("I/O Exception:");
 			e.printStackTrace();

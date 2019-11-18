@@ -56,7 +56,7 @@ public class StartCameraController implements Initializable {
 	private Scene alertScene;
 	private static int counter = 0;
 	private static int checkedCount = 0;
-	private static final int ALLOWED_CHECKED_COUNT = 3; // 6 seconds
+	private static final int ALLOWED_CHECKED_COUNT = 4; // 6 seconds
 	private static final String TEMP_PATH = "./tmp.jpg";
 
 	public StartCameraController() throws IOException, GeneralSecurityException {
@@ -126,11 +126,9 @@ public class StartCameraController implements Initializable {
 			
 
 			++counter;
-			System.out.println(counter);
-			System.out.println("DETECTED");
 
-			// Re-Verify face every 50 Frame / 25 FPS = 2 seconds
-			if (facesArray.length > 0 && counter >= 50) {
+			// Re-Verify face every 38 Frame / 25 FPS = 1.5 seconds
+			if (facesArray.length > 0 && counter >= 38) {
 				counter = 0;
 
 				faceRecognizer.calculateEmbedding(facesArray);
@@ -147,6 +145,12 @@ public class StartCameraController implements Initializable {
 
 					// Change view to choose reason
 					Platform.runLater(() -> {
+						try {
+							timer.shutdown();
+						} catch (Exception e) {
+							e.printStackTrace();
+							System.exit(1);
+						}
 						CategoryListController categoryListController = fxmlLoaderInfo.getController();
 						categoryListController.setStudentID(s.getId()); // pass parameter
 						categoryListController.saveEmotions(emotions);
@@ -156,6 +160,7 @@ public class StartCameraController implements Initializable {
 
 					});
 
+					/*
 					System.out.println(s); // print student
 
 					Platform.runLater(() -> {
@@ -166,6 +171,7 @@ public class StartCameraController implements Initializable {
 							System.exit(1);
 						}
 					});
+					*/
 				} else if (++checkedCount >= ALLOWED_CHECKED_COUNT) {
 					System.out.println("Not Identified");
 					// stop webcam
@@ -179,6 +185,12 @@ public class StartCameraController implements Initializable {
 					
 					// Change view to alert						
 					Platform.runLater(() -> {
+						try {
+							timer.shutdown();
+						} catch (Exception e) {
+							e.printStackTrace();
+						    System.exit(1);
+						}
 						
 						AlertController alertController = fxmlLoaderAlert.getController();
 						System.out.println(alertController + "alert controller");

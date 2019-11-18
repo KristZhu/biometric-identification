@@ -71,6 +71,7 @@ public class ReportController {
 		ReasonBarChart();
 		
 	}
+  
    // format date
 	public static final LocalDate Localdate(String dateString) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -100,7 +101,7 @@ public class ReportController {
 		Date date1 = transformDate(startDate.getValue());
 		Date date2 = transformDate(endDate.getValue());
 
-		// get data from DB
+		// get data form DB
 		int r1F = 0, r2F = 0, r3F = 0, r4F = 0, r5F = 0, r6F = 0;
 		int r1M = 0, r2M = 0, r3M = 0, r4M = 0, r5M = 0, r6M = 0;
 
@@ -113,12 +114,12 @@ public class ReportController {
 		r6F = reasonFrequency.get(6);
 
 		System.out.println("female: " + r1F + " " + r2F + " " + r3F + " " + r4F + " " + r5F + " " + r6F);
-        // add to a pie chart
+    // add to a pie chart
 		ObservableList<Data> listF = FXCollections.observableArrayList(new PieChart.Data("Borrow Stapler", r1F),
 				new PieChart.Data("Visit Nereshnee", r2F), new PieChart.Data("Visit Kim", r3F), new PieChart.Data("Complain", r4F),
 				new PieChart.Data("Collect Assignment", r5F), new PieChart.Data("Others", r6F));
 		fPie.setData(listF);
-        // get data from DB
+    // get data from DB
 		Map<Integer, Integer> reasonFrequency2 = reasonFrequency(date1, date2, "M");
 		r1M = reasonFrequency2.get(1);
 		r2M = reasonFrequency2.get(2);
@@ -134,7 +135,7 @@ public class ReportController {
 		mPie.setData(listF2);
 
 	}
-
+  
 	@FXML  // quit
 	void Back(ActionEvent event) {
 		Stage stage = (Stage) frePane.getScene().getWindow();
@@ -155,6 +156,7 @@ public class ReportController {
 		r5 = reasonFrequency.get(5);
 		r6 = reasonFrequency.get(6);
 		System.out.println("total:" + r1 + " " + r2 + " " + r3 + " " + r4 + " " + r5 + " " + r6);
+
 		// add to barchart		
 		XYChart.Series set = new XYChart.Series<>();
 		set.getData().addAll(

@@ -86,6 +86,7 @@
                            <children>
                               <VBox layoutX="13.0" layoutY="27.0" prefHeight="315.0" prefWidth="335.0" style="-fx-border-color: #0086ad;">
                                  <children>
+
                                     <HBox prefHeight="39.0" prefWidth="333.0">
                                        <children>
                                           <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="333.0" text="Male" textFill="#0086ad">

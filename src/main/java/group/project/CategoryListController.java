@@ -1,5 +1,6 @@
 package group.project;
 
+
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -63,6 +64,7 @@ public class CategoryListController {
 					public void changed(ObservableValue<? extends Number> ov, Number oldSelected, Number newSelected) {
 						int choice = choiceBox.getSelectionModel().getSelectedIndex();
 						System.out.println("Selected Option: " + choice);
+
 					}
 				});
 
