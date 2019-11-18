@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 import org.bytedeco.opencv.opencv_core.Mat;
@@ -48,7 +48,6 @@ public class AlertController {
 	public void setFace(byte[] feature) {
 		face = feature;
 		System.out.println("New feature Saved");
-		// System.out.println(feature);
 
 	}
 
@@ -58,9 +57,9 @@ public class AlertController {
 
 			URL imageFolder = getClass().getClassLoader().getResource("image");
 			if (imageFolder == null) {
-				Path base = Paths.get(getClass().getResource("/").getPath());
-				Path newFolder = Paths.get(base.toAbsolutePath() + "/image/");
-				Files.createDirectory(newFolder);
+			        Path base = Paths.get(getClass().getResource("/").getPath());
+			        Path newFolder = Paths.get(base.toAbsolutePath() + "/image/");
+			        Files.createDirectory(newFolder);
 			}
 			File f = new File(getClass().getClassLoader().getResource("image").getFile());
 			imwrite(f.getAbsolutePath() + "/test.jpg", frameMat);

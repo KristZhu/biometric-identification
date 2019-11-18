@@ -13,6 +13,7 @@ import javafx.scene.layout.Pane;
 public class App extends Application {
 	public static void main(String[] args) {
 		//DAO.deleteAllStudents();
+		//DAO.deleteAllVisits();
 		System.out.println("Currently there are " + DAO.getAllStudents().size() + " student(s) in the database");
 
 		for (Student s : DAO.getAllStudents()) {
@@ -24,7 +25,7 @@ public class App extends Application {
 	@Override
 	public void start(Stage stage) throws IOException {
 		Pane home = FXMLLoader.load(App.class.getClassLoader().getResource("Start.fxml"));  // change pane to parent
-		Scene scene = new Scene(home, 400, 500);
+		Scene scene = new Scene(home);
 		stage.setScene(scene);
 		stage.show();
 	}

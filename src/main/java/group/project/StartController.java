@@ -35,20 +35,22 @@ public class StartController {
 
     @FXML
     void startCamera(ActionEvent event) {
+		//camera.setStyle("-fx-background-color: #9489DE; ");
     	loadWindow("StartCamera.fxml");
 
     }
 
     @FXML
     void quit(ActionEvent event) {
-		Platform.exit();
-    	//Stage stage = (Stage)startPane.getScene().getWindow();
-    	//stage.close();
+		//exit.setStyle("-fx-background-color: #9489DE; ");
+    	Platform.exit();
+    	System.exit(0);
     }
 
     @FXML
-    void showReport(ActionEvent event) {  // change to menu bar
-    	loadWindow("FreReport.fxml");
+    void showReport(ActionEvent event) { 
+		//report.setStyle("-fx-background-color: #9489DE; ");
+    	loadWindow("Report.fxml");
     }
     
     
