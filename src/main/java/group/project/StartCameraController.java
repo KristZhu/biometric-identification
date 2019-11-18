@@ -126,8 +126,6 @@ public class StartCameraController implements Initializable {
 			
 
 			++counter;
-			System.out.println(counter);
-			System.out.println("DETECTED");
 
 			// Re-Verify face every 50 Frame / 25 FPS = 2 seconds
 			if (facesArray.length > 0 && counter >= 50) {
@@ -147,6 +145,12 @@ public class StartCameraController implements Initializable {
 
 					// Change view to dashboard
 					Platform.runLater(() -> {
+						try {
+							timer.shutdown();
+						} catch (Exception e) {
+							e.printStackTrace();
+							System.exit(1);
+						}
 						StudentInfoController stuInfoController = fxmlLoaderInfo.getController();
 						System.out.println(stuInfoController + "controller");
 						stuInfoController.setStudentID(s.getId()); // pass parameter
@@ -158,6 +162,7 @@ public class StartCameraController implements Initializable {
 
 					});
 
+					/*
 					System.out.println(s); // print student
 
 					Platform.runLater(() -> {
@@ -168,6 +173,7 @@ public class StartCameraController implements Initializable {
 							System.exit(1);
 						}
 					});
+					*/
 				} else if (++checkedCount >= ALLOWED_CHECKED_COUNT) {
 					System.out.println("Not Identified");
 					// stop webcam
@@ -181,6 +187,12 @@ public class StartCameraController implements Initializable {
 					
 					// Change view to alert						
 					Platform.runLater(() -> {
+						try {
+							timer.shutdown();
+						} catch (Exception e) {
+							e.printStackTrace();
+							System.exit(1);
+						}
 						
 						AlertController alertController = fxmlLoaderAlert.getController();
 						System.out.println(alertController + "alert controller");

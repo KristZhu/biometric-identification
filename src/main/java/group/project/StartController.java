@@ -41,8 +41,9 @@ public class StartController {
 
     @FXML
     void quit(ActionEvent event) {
-    	Stage stage = (Stage)startPane.getScene().getWindow();
-    	stage.close();
+		Platform.exit();
+    	//Stage stage = (Stage)startPane.getScene().getWindow();
+    	//stage.close();
     }
 
     @FXML
@@ -71,7 +72,6 @@ public class StartController {
     
     public StartController() throws IOException {
 		faceRecognizer = new FaceRecognizer("haarcascade_frontalface_alt2.xml", "nn4.small2.v1.t7");
-		System.out.println("DEBUG");
 	}
 }
 
