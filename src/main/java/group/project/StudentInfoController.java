@@ -4,6 +4,17 @@ import javafx.event.ActionEvent;
 
 import java.io.File;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.bytedeco.librealsense.intrinsics;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -17,116 +28,193 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.chart.PieChart.Data;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class StudentInfoController {
 
+    @FXML
+    private Label majorLabel;  
+
+    @FXML
+    private Label nameLabel;
+    
 	@FXML
-	private PieChart piechart;
-	@FXML
-	private ChoiceBox choicebox;
-	@FXML
-	private TextField StudentID;
-	@FXML
-	private TextField name;
+    private Label nameText;
+
+    @FXML
+    private Label  studentID;
+    
+    @FXML
+    private Label  gender;
+
+    @FXML
+    private Label  year;
+
+    @FXML
+    private Label  major;
+
+    @FXML
+    private Label AngerScale1;
+
+    @FXML
+    private Label SurpriseScale1;
+
+    @FXML
+    private Label HappyScale1;
+
+    @FXML
+    private Label SadScale1;
+    
     @FXML
     private BarChart<?, ?> barChart;
+    
     @FXML
     private CategoryAxis x;
+    
     @FXML
     private NumberAxis y;
+    
     @FXML
     private ImageView imageview;
     
+    @FXML
+    private TextField VisitTimes;
+    
+    @FXML
+    private TextField lastVisitTime;
+
+    @FXML
+    private Label message;
+    
+    @FXML
+    private Label alert;
+    
     private String ID;
+    
+    private HashMap<String, String> emotions;
+    
+    public void saveEmotions(HashMap<String, String> emos) {
+    	emotions = emos; 	
+    }
 
     public void setStudentID(String id) {
         ID = id;
 		Student s1 = DAO.getStudentByID(ID); // pass ID , suppose id = 1
-		System.out.println(ID);
-		StudentID.setText(s1.getId()); 
-		name.setText(s1.getName());
+		
+		//set info
+		studentID.setText(s1.getId()); 
+		nameText.setText(s1.getName());
+		gender.setText(s1.getGender());
+		year.setText(s1.getGrade());
+		major.setText(s1.getMajor());
+		VisitTimes.setText(""+getVisitsAmount(s1));
+		
+		Date lastVisitDate = lastVisit(s1);
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(lastVisitDate);
+		
+		lastVisitTime.setText("" + calendar.get(Calendar.DAY_OF_MONTH) + "/"
+							+ (calendar.get(Calendar.MONTH)+1) + "/"
+							+ calendar.get(Calendar.YEAR));
+		nameLabel.setText(s1.getName());
+		majorLabel.setText(s1.getMajor());
+		
+		HappyScale1.setText(emotions.get("JOY"));
+		SadScale1.setText(emotions.get("SORROW"));
+		SurpriseScale1.setText(emotions.get("SURPRISE"));
+		AngerScale1.setText(emotions.get("ANGER"));
+		
+		message.setText("MY HEART IS IN THE WORK");
+		alert.setText(genMessage());
+				
+		ReasonBarChart(s1);
 		
 	//set image
 		try {
 			File file = new File(getClass().getClassLoader().getResource("image/"+ID+".jpg").getFile());
 			Image img = new Image(file.toURI().toString());//file.getAbsolutePath()
 			imageview.setImage(img);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
-		} // src/main/resources/image/test.jpg
+		} 
     }
     
-	@FXML
-	private void initialize() {		
-
+    
+	// generate alert message
+	private String genMessage() {			
+		String[] strList = {"You have a JAVA quiz tommorow!",
+				"Remember to respond Prof.Murli",
+				"Have a meeting with Riaz",
+				"Join SRC Christmas Party!",
+				"Reserve the Data mining Speech"};
+		int i = (int)(Math.random()*5);		
+		return strList[i];
+	}
+	
+	// display reason bar chart
+	public void ReasonBarChart(Student s) {
+		int r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0;
+		
+		Map<Integer, Integer> reasonFrequency = getEachVisitAmount(s);		
+		r1 = reasonFrequency.get(1);
+		r2 = reasonFrequency.get(2);
+		r3 = reasonFrequency.get(3);
+		r4 = reasonFrequency.get(4);
+		r5 = reasonFrequency.get(5);
+		r6 = reasonFrequency.get(6);
+		
+		
+		System.out.println("total:" + r1 + " " + r2 + " " + r3 + " " + r4 + " " + r5 + " " + r6);
+				
 		XYChart.Series set = new XYChart.Series<>();
 		set.getData().addAll(
-				new XYChart.Data("James",5),
-				new XYChart.Data("More",4)				
+				new XYChart.Data("1",r1),
+				new XYChart.Data("2",r2),
+				new XYChart.Data("3",r3),
+				new XYChart.Data("4",r4),
+				new XYChart.Data("5",r5),
+				new XYChart.Data("6",r6)
 				);
-		barChart.getData().addAll(set);
-		
-		//pie chart
-		ObservableList<String> type = FXCollections.observableArrayList("Major", "Gender", "Test");
-		choicebox.setValue("Major");
-		choicebox.setItems(type);
-
-		choicebox.getSelectionModel().selectedIndexProperty()
-				.addListener((ChangeListener<? super Number>) new ChangeListener<Number>() {
-					@Override
-					public void changed(ObservableValue<? extends Number> ov, Number oldSelected, Number newSelected) {
-						int choice = choicebox.getSelectionModel().getSelectedIndex();
-						System.out.println("Selected Option: " + choice);
-						switch (choice) {
-						case 0:
-							MajorChart();
-							break;
-						case 1:
-							GenderChart();
-							break;
-						case 2:
-							System.out.println("test");
-							break;
-						}
-
-					}
-				});
+		set.setName("amount of visit");
+		barChart.getData().clear();
+		barChart.getData().addAll(set);		
 	}
 
-	public void GenderChart() {
-		// get data form DB
-		int male = 0, female = 0;
-		for (Student s : DAO.getAllStudents()) {
-			if (s.getGender().equals("M")) { // may change
-				male++;
-			} else {
-				female++;
-			}
+	// get the last time of visit
+	private static Date lastVisit(Student student) {
+		List<Date> dates = new ArrayList<Date>();				
+		for(int i=1; i<=6; i++) {
+			dates.addAll(student.getAllVisits().get(i));
 		}
-		ObservableList<Data> list = FXCollections.observableArrayList(new PieChart.Data("Male", male),
-				new PieChart.Data("Female", female));
-		piechart.setData(list);
-
+		Collections.sort(dates);
+		return dates.get(dates.size()-1);
 	}
-
-	public void MajorChart() {
-		// get data form DB
-		int mism = 0, msppm = 0, msit = 0;
-		for (Student s : DAO.getAllStudents()) {
-			if (s.getMajor().equals("MISM")) { // may change
-				mism++;
-			} else if (s.getMajor().equals("MSPPM")) {
-				msppm++;
-			} else {
-				msit++;
-			}
+	
+	// get the total amount of visit 
+	private static int getVisitsAmount(Student student) {
+		int amount = 0;
+		Map<Integer, List<Date>> visits = student.getAllVisits();
+		for(int i: visits.keySet()) {
+			amount += visits.get(i).size();
 		}
-		ObservableList<Data> list = FXCollections.observableArrayList(new PieChart.Data("MISM", mism),
-				new PieChart.Data("MSPPM", msppm), new PieChart.Data("MSIT", msit));
-		piechart.setData(list);
-
+		return amount;
+	}
+	
+	/**
+	 * @Integer1: Visit reason Integer2: How many of this reason
+	 */
+	private static Map<Integer, Integer> getEachVisitAmount(Student student) {
+		Map<Integer, Integer> eachVisitAmount = new HashMap<Integer, Integer>();
+		Map<Integer, List<Date>> visits = student.getAllVisits();
+		System.out.println("getEachVisitAmountDebug2: "+visits);
+		for(int i: visits.keySet()) {
+			eachVisitAmount.put(i, visits.get(i).size());
+		}
+		System.out.println("getEachVisitAmountDebug3: "+eachVisitAmount);
+		return eachVisitAmount;
 	}
 }

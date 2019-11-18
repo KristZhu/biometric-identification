@@ -64,8 +64,8 @@ public class StartCameraController implements Initializable {
 		// Load Google Vision Credential
 		gVision = new GoogleVisionInterface();
 
-		// student details
-		fxmlLoaderInfo = new FXMLLoader(getClass().getClassLoader().getResource("StudentInfo.fxml"));
+		// choose reason category
+		fxmlLoaderInfo = new FXMLLoader(getClass().getClassLoader().getResource("CategoryList.fxml"));
 		dashboard = (Parent) fxmlLoaderInfo.load();
 
 		// alert student not found
@@ -145,15 +145,13 @@ public class StartCameraController implements Initializable {
 					// No need webcam anymore
 					capture.release();
 
-					// Change view to dashboard
+					// Change view to choose reason
 					Platform.runLater(() -> {
-						StudentInfoController stuInfoController = fxmlLoaderInfo.getController();
-						System.out.println(stuInfoController + "controller");
-						stuInfoController.setStudentID(s.getId()); // pass parameter
-						dashboardScene = new Scene(dashboard, 892, 733);
-						dashboardScene.getStylesheets()
-								.add(getClass().getClassLoader().getResource("stylesheet.css").toExternalForm());
-
+						CategoryListController categoryListController = fxmlLoaderInfo.getController();
+						categoryListController.setStudentID(s.getId()); // pass parameter
+						categoryListController.saveEmotions(emotions);
+						
+						dashboardScene = new Scene(dashboard);
 						((Stage) startBtn.getScene().getWindow()).setScene(dashboardScene); // pass parameter
 
 					});
@@ -188,7 +186,7 @@ public class StartCameraController implements Initializable {
 
 						alertController.setImage(frameOri);
 
-						alertScene = new Scene(alert, 500, 500);
+						alertScene = new Scene(alert);
 						((Stage) startBtn.getScene().getWindow()).setScene(alertScene);
 
 					}); 
@@ -238,6 +236,7 @@ public class StartCameraController implements Initializable {
 			for (String k : emotions.keySet()) {
 				emos.put(k, emotions.get(k));
 				System.out.println(k + ": " + emotions.get(k)); // emotion
+				
 			}
 
 			// Delete the temp file

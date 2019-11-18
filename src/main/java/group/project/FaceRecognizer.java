@@ -25,7 +25,7 @@ import static org.bytedeco.opencv.global.opencv_dnn.*;
 
 
 public class FaceRecognizer {
-	public static final double THRESHOLD = 0.70;
+	public static final double THRESHOLD = 0.80;
 	private CascadeClassifier faceCascade;
 	private Net openFaceModel;
 	private Mat currImage;

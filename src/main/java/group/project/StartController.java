@@ -35,22 +35,25 @@ public class StartController {
 
     @FXML
     void startCamera(ActionEvent event) {
+		//camera.setStyle("-fx-background-color: #9489DE; ");
     	loadWindow("StartCamera.fxml");
 
     }
 
     @FXML
     void quit(ActionEvent event) {
-    	Stage stage = (Stage)startPane.getScene().getWindow();
-    	stage.close();
+		//exit.setStyle("-fx-background-color: #9489DE; ");
+    	Platform.exit();
+    	System.exit(0);
     }
 
     @FXML
-    void showReport(ActionEvent event) {  // change to menu bar
-    	loadWindow("FreReport.fxml");
+    void showReport(ActionEvent event) { 
+		//report.setStyle("-fx-background-color: #9489DE; ");
+    	loadWindow("Report.fxml");
     }
     
-    
+    // load desired window
     void loadWindow(String name) {
     	try {
     		FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(name));
@@ -59,7 +62,6 @@ public class StartController {
     			((StartCameraController)loader.getController()).setFaceRecognizer(faceRecognizer);
     		}
 			Stage stage = new Stage(StageStyle.DECORATED);
-			//stage.setTitle("");
 			stage.setScene(new Scene(parent));
 			stage.show();
 		} catch (IOException e) {

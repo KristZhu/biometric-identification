@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import java.lang.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -21,272 +22,230 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="733.0" prefWidth="892.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group.project.StudentInfoController">
+<AnchorPane prefHeight="684.0" prefWidth="992.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group.project.StudentInfoController">
    <children>
-      <VBox layoutX="1.0" prefHeight="733.0" prefWidth="247.0" styleClass="sidebar">
+      <VBox layoutX="4.0" layoutY="4.0" prefHeight="673.0" prefWidth="344.0" style="-fx-background-color: #005582; -fx-border-color: #daf8e3;">
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="46.0" prefWidth="247.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="TOP" prefHeight="31.0" prefWidth="247.0" text="STUDENT INFORMATION" textFill="#daf8e3">
+                  <Label alignment="CENTER" contentDisplay="TOP" prefHeight="60.0" prefWidth="245.0" text="STUDENT INFORMATION" textFill="#daf8e3">
                      <font>
-                        <Font name="Berlin Sans FB Demi Bold" size="20.0" />
-                     </font></Label>
+                        <Font name="Garamond Bold" size="16.0" />
+                     </font>
+                  </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="176.0" prefWidth="247.0">
+            <HBox alignment="CENTER" prefHeight="196.0" prefWidth="245.0">
                <children>
-                  <ImageView fx:id="imageview" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imageview" fitHeight="157.0" fitWidth="165.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@face2.jpg" />
                      </image>
-                     <effect>
-                        <Glow />
-                     </effect>
                   </ImageView>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="53.0" prefWidth="247.0">
+            <HBox alignment="CENTER" prefHeight="28.0" prefWidth="245.0">
                <children>
-                  <TextField fx:id="StudentName" alignment="CENTER" prefHeight="29.0" prefWidth="152.0" promptText="StudentName" styleClass="parent">
+                  <Label fx:id="nameLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="14.0" prefWidth="245.0" text="Name" textFill="#daf8e3">
                      <font>
-                        <Font name="Arial" size="12.0" />
+                        <Font name="Garamond Bold" size="20.0" />
                      </font>
-                  </TextField>
+                  </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="295.0" prefHeight="164.0" prefWidth="247.0">
+            <HBox alignment="CENTER" prefHeight="34.0" prefWidth="245.0">
                <children>
-                  <Pane prefHeight="155.0" prefWidth="215.0">
+                  <Label fx:id="majorLabel" alignment="TOP_CENTER" contentDisplay="TOP" prefHeight="30.0" prefWidth="245.0" text="Major" textFill="#daf8e3">
+                     <font>
+                        <Font name="Garamond Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="39.0" prefWidth="245.0" />
+            <HBox alignment="CENTER" layoutX="11.0" layoutY="315.0" prefHeight="209.0" prefWidth="335.0">
+               <children>
+                  <Pane prefHeight="209.0" prefWidth="319.0" style="-fx-border-color: #daf8e3;">
                      <children>
-                        <Label layoutX="30.0" layoutY="43.0" prefHeight="17.0" prefWidth="50.0" text="Happy" textFill="#daf8e3">
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="21.0" prefHeight="18.0" prefWidth="306.0" text="FACE RECOGNITION" textFill="#daf8e3">
                            <font>
-                              <Font name="System Bold Italic" size="12.0" />
+                              <Font name="Garamond Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="HappyScale" layoutX="115.0" layoutY="43.0" text="HappyScale" textFill="#daf8e3" />
-                        <Label layoutX="30.0" layoutY="70.0" prefHeight="17.0" prefWidth="50.0" text="Sad" textFill="#daf8e3">
+                        <Label layoutX="18.0" layoutY="53.0" prefHeight="17.0" prefWidth="50.0" text="Happy" textFill="#daf8e3">
                            <font>
-                              <Font name="System Bold Italic" size="12.0" />
+                              <Font name="System Bold Italic" size="16.0" />
                            </font>
                         </Label>
-                        <Label layoutX="30.0" layoutY="102.0" prefHeight="17.0" prefWidth="50.0" text="Anger" textFill="#daf8e3">
+                        <Label fx:id="HappyScale1" layoutX="92.0" layoutY="53.0" prefHeight="25.0" prefWidth="214.0" textFill="#daf8e3" />
+                        <Label layoutX="19.0" layoutY="89.0" prefHeight="17.0" prefWidth="50.0" text="Sad" textFill="#daf8e3">
                            <font>
-                              <Font name="System Bold Italic" size="12.0" />
+                              <Font name="System Bold Italic" size="16.0" />
                            </font>
                         </Label>
-                        <Label layoutX="30.0" layoutY="132.0" prefHeight="17.0" prefWidth="50.0" text="Fear" textFill="#daf8e3">
+                        <Label fx:id="SadScale1" layoutX="99.0" layoutY="87.0" prefHeight="25.0" prefWidth="208.0" textFill="#daf8e3" />
+                        <Label layoutX="18.0" layoutY="120.0" prefHeight="25.0" prefWidth="71.0" text="Surprise" textFill="#daf8e3">
                            <font>
-                              <Font name="System Bold Italic" size="12.0" />
+                              <Font name="System Bold Italic" size="16.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="31.0" layoutY="14.0" prefHeight="17.0" prefWidth="152.0" text="FACE RECOGNITION" textFill="#daf8e3">
+                        <Label fx:id="SurpriseScale1" layoutX="95.0" layoutY="120.0" prefHeight="25.0" prefWidth="214.0" textFill="#daf8e3" />
+                        <Label layoutX="18.0" layoutY="153.0" prefHeight="17.0" prefWidth="50.0" text="Anger" textFill="#daf8e3">
                            <font>
-                              <Font name="Berlin Sans FB Demi Bold" size="16.0" />
+                              <Font name="System Bold Italic" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="SadScale" layoutX="115.0" layoutY="70.0" text="SadScale" textFill="#daf8e3" />
-                        <Label fx:id="AngerScale" layoutX="115.0" layoutY="102.0" text="AngerScale" textFill="#daf8e3" />
-                        <Label fx:id="FearScale" layoutX="115.0" layoutY="132.0" text="FearScale" textFill="#daf8e3" />
+                        <Label fx:id="AngerScale1" layoutX="96.0" layoutY="153.0" prefHeight="25.0" prefWidth="214.0" textFill="#daf8e3" />
                      </children>
                   </Pane>
                </children>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="43.0" prefWidth="247.0">
-               <children>
-                  <Label alignment="BOTTOM_CENTER" contentDisplay="TOP" prefHeight="269.0" prefWidth="246.0" text="CLASS BY THIS TIME" textFill="#daf8e3">
-                     <font>
-                        <Font name="Berlin Sans FB Demi Bold" size="12.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="348.0" prefHeight="36.0" prefWidth="247.0">
-               <children>
-                  <TextField fx:id="CourseNow" alignment="CENTER" prefHeight="29.0" prefWidth="152.0" promptText="CourseNow" styleClass="parent" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="401.0" prefHeight="43.0" prefWidth="247.0">
-               <children>
-                  <Label alignment="BOTTOM_CENTER" contentDisplay="TOP" prefHeight="48.0" prefWidth="247.0" text="TOTAL RECEPTION VISITS" textFill="#daf8e3">
-                     <font>
-                        <Font name="Berlin Sans FB Demi Bold" size="12.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="401.0" prefHeight="43.0" prefWidth="247.0">
-               <children>
-                  <TextField fx:id="TotalVisitCount" alignment="CENTER" prefHeight="29.0" prefWidth="152.0" promptText="TotalReceptionVisit" styleClass="parent" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="444.0" prefHeight="36.0" prefWidth="247.0">
-               <children>
-                  <Label alignment="BOTTOM_CENTER" contentDisplay="TOP" prefHeight="63.0" prefWidth="247.0" text="DATE LAST VISITED" textFill="#daf8e3">
-                     <font>
-                        <Font name="Berlin Sans FB Demi Bold" size="12.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="444.0" prefHeight="36.0" prefWidth="247.0">
-               <children>
-                  <TextField fx:id="LastVisitDate" alignment="CENTER" prefHeight="29.0" prefWidth="152.0" promptText="LastReceptionDateVisit" styleClass="parent" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="36.0" prefWidth="247.0" />
          </children></VBox>
-      <VBox layoutX="251.0" layoutY="2.0" prefHeight="733.0" prefWidth="642.0" styleClass="pane">
+      <VBox layoutX="350.0" layoutY="4.0" prefHeight="673.0" prefWidth="634.0" style="-fx-border-color: #005582;">
          <children>
-            <Pane prefHeight="235.0" prefWidth="403.0" styleClass="pane">
+            <Pane prefHeight="225.0" prefWidth="589.0" styleClass="pane">
                <children>
                   <Label alignment="CENTER" contentDisplay="TOP" layoutX="200.0" layoutY="-1.0" prefHeight="30.0" prefWidth="247.0" text="STUDENT DETAILS" textFill="#0086ad">
                      <font>
-                        <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                        <Font name="Garamond Bold" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="StudentID" layoutX="90.0" layoutY="40.0" promptText="ID">
+                  <Label layoutX="109.0" layoutY="51.0" text="ID          :" textFill="#0086ad">
                      <font>
-                        <Font name="Berlin Sans FB Demi Bold" size="12.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="name" layoutX="89.0" layoutY="72.0" prefHeight="23.0" prefWidth="208.0" promptText="LastName">
-                     <font>
-                        <Font name="Berlin Sans FB Demi Bold" size="12.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="FirstName" layoutX="403.0" layoutY="72.0" prefHeight="23.0" prefWidth="198.0" promptText="FirstName" text="FirstName">
-                     <font>
-                        <Font name="Berlin Sans FB Demi Bold" size="12.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="Program" layoutX="89.0" layoutY="104.0" prefHeight="23.0" prefWidth="208.0" promptText="Program" text="Program">
-                     <font>
-                        <Font name="Berlin Sans FB Demi Bold" size="12.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="DateOfBirth" layoutX="403.0" layoutY="104.0" prefHeight="23.0" prefWidth="198.0" promptText="DateOfBirth" text="DateOfBirth">
-                     <font>
-                        <Font name="Berlin Sans FB Demi Bold" size="12.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="Email" layoutX="89.0" layoutY="136.0" prefHeight="23.0" prefWidth="208.0" promptText="Email" text="Email">
-                     <font>
-                        <Font name="Berlin Sans FB Demi Bold" size="12.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="Phone" layoutX="403.0" layoutY="136.0" prefHeight="23.0" prefWidth="198.0" promptText="Phone" text="Phone">
-                     <font>
-                        <Font name="Berlin Sans FB Demi Bold" size="12.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="Address" layoutX="89.0" layoutY="169.0" prefHeight="36.0" prefWidth="512.0" promptText="Address" text="Address">
-                     <font>
-                        <Font name="Berlin Sans FB Demi Bold" size="12.0" />
-                     </font>
-                  </TextField>
-                  <Label layoutX="16.0" layoutY="43.0" text="ID Number :" textFill="#0086ad">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="Garamond Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="16.0" layoutY="75.0" prefHeight="17.0" prefWidth="71.0" text="Last Name  :" textFill="#0086ad">
+                  <Label layoutX="109.0" layoutY="84.0" prefHeight="17.0" prefWidth="71.0" text="Name    :" textFill="#0086ad">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="Garamond Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="16.0" layoutY="107.0" text="Program     :" textFill="#0086ad">
+                  <Label layoutX="109.0" layoutY="117.0" text="Gender  :" textFill="#0086ad">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="Garamond Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="16.0" layoutY="139.0" text="Email          :" textFill="#0086ad">
+                  <Label layoutX="109.0" layoutY="150.0" text="Year       :" textFill="#0086ad">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="Garamond Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="16.0" layoutY="179.0" text="Address      :" textFill="#0086ad">
+                  <Label layoutX="109.0" layoutY="185.0" text="Major    :" textFill="#0086ad">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="Garamond Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="317.0" layoutY="75.0" prefHeight="17.0" prefWidth="78.0" text="First Name   :" textFill="#0086ad">
+                  <Label fx:id="studentID" layoutX="188.0" layoutY="46.0" prefHeight="28.0" prefWidth="169.0" text="ID">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="Garamond Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="317.0" layoutY="107.0" prefHeight="17.0" prefWidth="78.0" text="Data of Birth :" textFill="#0086ad">
+                  <Label fx:id="nameText" layoutX="188.0" layoutY="80.0" prefHeight="25.0" prefWidth="312.0" text="Name">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="Garamond Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="317.0" layoutY="139.0" prefHeight="17.0" prefWidth="78.0" text="Phone           :   " textFill="#0086ad">
+                  <Label fx:id="gender" layoutX="188.0" layoutY="114.0" prefHeight="23.0" prefWidth="208.0" text="Gender">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="Garamond Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="year" layoutX="188.0" layoutY="147.0" prefHeight="23.0" prefWidth="208.0" text="Year">
+                     <font>
+                        <Font name="Garamond Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="major" layoutX="188.0" layoutY="181.0" prefHeight="25.0" prefWidth="312.0" text="Major">
+                     <font>
+                        <Font name="Garamond Bold" size="14.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane layoutX="10.0" layoutY="10.0" prefHeight="255.0" prefWidth="620.0" styleClass="pane">
+            <HBox prefHeight="11.0" prefWidth="632.0" />
+            <Pane prefHeight="318.0" prefWidth="632.0" styleClass="pane">
                <children>
-                  <VBox layoutX="14.0" layoutY="16.0" prefHeight="208.0" prefWidth="296.0" styleClass="vbox">
+                  <VBox layoutX="14.0" layoutY="16.0" prefHeight="288.0" prefWidth="296.0" style="-fx-border-color: #00c2c7;" styleClass="vbox">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="TOP" prefHeight="30.0" prefWidth="271.0" text="COURSES" textFill="#0086ad">
+                        <Label alignment="CENTER" contentDisplay="TOP" prefHeight="30.0" prefWidth="294.0" text="CATEGORY" textFill="#0086ad">
                            <font>
-                              <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                              <Font name="Garamond Bold" size="14.0" />
                            </font>
                         </Label>
-                        <ListView prefHeight="200.0" prefWidth="200.0" />
-                     </children>
-                  </VBox>
-                  <VBox layoutX="320.0" layoutY="16.0" prefHeight="208.0" prefWidth="283.0" styleClass="vbox">
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="TOP" prefHeight="30.0" prefWidth="258.0" text="RECEPTION VISIT DETAILS" textFill="#0086ad">
-                           <font>
-                              <Font name="Berlin Sans FB Demi Bold" size="14.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="15.0" />
-                           </VBox.margin>
-                        </Label>
-                        <PieChart fx:id="piechart" labelLineLength="1.0" legendVisible="false" prefHeight="155.0" prefWidth="265.0" />
-                        <ChoiceBox fx:id="choicebox" prefHeight="25.0" prefWidth="109.0">
-                           <VBox.margin>
-                              <Insets left="90.0" />
-                           </VBox.margin>
-                        </ChoiceBox>
-                     </children>
-                  </VBox>
-               </children>
-            </Pane>
-            <Pane layoutX="21.0" layoutY="264.0" prefHeight="254.0" prefWidth="620.0" styleClass="pane">
-               <children>
-                  <VBox layoutX="323.0" layoutY="13.0" prefHeight="214.0" prefWidth="283.0" styleClass="vbox">
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="TOP" prefHeight="30.0" prefWidth="258.0" text="ANNOUNCEMENTS" textFill="#0086ad">
-                           <font>
-                              <Font name="Berlin Sans FB Demi Bold" size="14.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <VBox layoutX="14.0" layoutY="14.0" prefHeight="214.0" prefWidth="296.0" styleClass="vbox">
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="TOP" prefHeight="30.0" prefWidth="271.0" text="GENERAL INFORMATION" textFill="#0086ad">
-                           <font>
-                              <Font name="Berlin Sans FB Demi Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <BarChart fx:id="barChart">
+                        <BarChart fx:id="barChart" prefHeight="175.0" prefWidth="294.0">
                           <xAxis>
-                            <CategoryAxis label="Reason" side="BOTTOM" fx:id="x" />
+                            <CategoryAxis side="BOTTOM" fx:id="x" />
                           </xAxis>
                           <yAxis>
-                            <NumberAxis fx:id="y" label="Number" side="LEFT" upperBound="5.0" />
+                            <NumberAxis fx:id="y" side="LEFT" />
                           </yAxis>
                         </BarChart>
+                        <Label prefHeight="28.0" prefWidth="294.0" text="     1:Borrow Stapler  2: Visit Nereshnee  3:Visit Kim" />
+                        <Label prefHeight="28.0" prefWidth="294.0" text="     4: Complain  5: Collect Assignment  6:Others" />
                      </children>
                   </VBox>
-               </children></Pane>
+                  <VBox layoutX="327.0" layoutY="16.0" prefHeight="288.0" prefWidth="289.0" style="-fx-border-color: #00c2c7;" styleClass="vbox">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="TOP" prefHeight="28.0" prefWidth="290.0" text="RECEPTION VISIT DETAILS" textFill="#0086ad">
+                           <font>
+                              <Font name="Garamond Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label text="Last Visit Time: " textFill="#0086ad">
+                           <font>
+                              <Font name="Garamond Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="lastVisitTime" prefHeight="25.0" prefWidth="226.0" />
+                        <Label text="Times of  Visit: " textFill="#0086ad">
+                           <font>
+                              <Font name="Garamond Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="VisitTimes" prefHeight="25.0" prefWidth="226.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
+            <HBox prefHeight="11.0" prefWidth="632.0" />
+            <Pane prefHeight="153.0" prefWidth="632.0" styleClass="pane">
+               <children>
+                  <VBox layoutX="327.0" layoutY="14.0" prefHeight="119.0" prefWidth="289.0" style="-fx-border-color: #00c2c7;" styleClass="vbox">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="TOP" prefHeight="30.0" prefWidth="283.0" text="ANNOUNCEMENTS" textFill="#0086ad">
+                           <font>
+                              <Font name="Garamond Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="message" prefHeight="139.0" prefWidth="251.0" text="Label">
+                           <VBox.margin>
+                              <Insets left="20.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="14.0" layoutY="14.0" prefHeight="119.0" prefWidth="296.0" style="-fx-border-color: #00c2c7;" styleClass="vbox">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="TOP" prefHeight="30.0" prefWidth="296.0" text="ALERT" textFill="#0086ad">
+                           <font>
+                              <Font name="Garamond Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="alert" prefHeight="139.0" prefWidth="251.0" text="Label">
+                           <VBox.margin>
+                              <Insets left="20.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
          </children></VBox>
    </children>
 </AnchorPane>

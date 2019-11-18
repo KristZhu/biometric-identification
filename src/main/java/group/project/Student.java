@@ -7,21 +7,41 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.bytedeco.librealsense.intrinsics;
+
 public class Student {
 	private byte[] feature;
 	private String id;
 	private String name;
 	private String gender; // M F
-	private String major; // MISM MSPPS MSIT
+	private String major; // MISM MSPPM MSIT
 	private String grade; // 1 2
 	private Map<Integer, List<Date>> visits = new HashMap<Integer, List<Date>>();
-
-	public Student(byte[] feature, int reason) {
-		// TODO Auto-generated constructor stub
-		this(feature, "1", "Tara", "F", "MISM", "1");
-		this.putVisit(reason); // 123456
-		// this.visits.put(date, "complaint");
-	}
+	
+	 private Student() {
+		  this("123".getBytes(), "127", "Krist", "f", "MISM", "1");
+		  Date d1 = new Date();
+		  try { Thread.sleep(1000); } catch (Exception e) { }
+		  Date d2 = new Date();
+		  try { Thread.sleep(1000); } catch (Exception e) { }
+		  Date d3 = new Date();
+		  try { Thread.sleep(1000); } catch (Exception e) { }
+		  Date d4 = new Date();
+		  try { Thread.sleep(1000); } catch (Exception e) { }
+		  Date d5 = new Date();
+		  List<Date> list1 = new LinkedList<Date>();
+		  list1.add(d1); list1.add(d2);
+		  List<Date> list2 = new LinkedList<Date>();
+		  list2.add(d3); list2.add(d4); list2.add(d5);
+		  Map<Integer, List<Date>> visits = new HashMap<Integer, List<Date>>();
+		  visits.put(1, list1);
+		  visits.put(2, list2);
+		  visits.put(3, list1);
+		  visits.put(4, list2);
+		  visits.put(5, list2);
+		  visits.put(6, list1);
+		  this.visits=visits;
+	 }
 
 	public Student(byte[] feature, String id, String name, String gender, String major, String grade) {
 		// TODO Auto-generated constructor stub
@@ -31,12 +51,7 @@ public class Student {
 		this.gender = gender;
 		this.major = major;
 		this.grade = grade;
-		visits.put(1, new LinkedList<Date>());
-		visits.put(2, new LinkedList<Date>());
-		visits.put(3, new LinkedList<Date>());
-		visits.put(4, new LinkedList<Date>());
-		visits.put(5, new LinkedList<Date>());
-		visits.put(6, new LinkedList<Date>());
+		for(int i=1; i<=6; i++) visits.put(i, new LinkedList<Date>());
 	}
 
 	public Student(byte[] feature, String id, String name, String gender, String major, String grade,
