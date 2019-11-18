@@ -50,6 +50,7 @@ public class AddStudentController {
 
 	private byte[] feature;
 
+	// set face feature
 	public void setFeature(byte[] feature) {
 		this.feature = feature;
 		System.out.println("New feature Saved in Stu");
@@ -86,14 +87,11 @@ public class AddStudentController {
 		}
 		// new student (parameter)
 		 Student s1 = new Student(feature, stuID, stuName, stuGender, stuMajor,stuGrade);
-		// TEST Student s1 = new Student();
 		// static add student
 		DAO.insertStudent(s1);
 		System.out.println("New student added! Now " + DAO.getAllStudents().size() + " student(s) in the database");
 
 		// rename student image
-		// File oldfile =new File("images/test.jpg");
-		// File newfile =new File("images/"+stuID+".jpg");
 		File oldfile = new File(getClass().getClassLoader().getResource("image/test.jpg").getFile());
 		File newfile = new File(getClass().getClassLoader().getResource("image").getFile(), stuID + ".jpg");
 
@@ -109,7 +107,7 @@ public class AddStudentController {
 
 	}
 
-	@FXML
+	@FXML  // quit
 	void Cancel(ActionEvent event) {
 		Stage stage = (Stage) stuPane.getScene().getWindow();
 		stage.close();

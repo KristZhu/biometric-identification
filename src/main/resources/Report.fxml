@@ -86,21 +86,29 @@
                            <children>
                               <VBox layoutX="13.0" layoutY="27.0" prefHeight="315.0" prefWidth="335.0" style="-fx-border-color: #0086ad;">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="6.0" prefWidth="214.0" text="                               Male" textFill="#0086ad">
-                                       <font>
-                                          <Font name="Berlin Sans FB Demi Bold" size="14.0" />
-                                       </font>
-                                    </Label>
+                                    <HBox prefHeight="39.0" prefWidth="333.0">
+                                       <children>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="333.0" text="Male" textFill="#0086ad">
+                                             <font>
+                                                <Font name="Garamond Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
                                     <PieChart fx:id="mPie" animated="false" labelsVisible="false" prefHeight="295.0" prefWidth="333.0" />
                                  </children>
                               </VBox>
                               <VBox layoutX="361.0" layoutY="27.0" prefHeight="315.0" prefWidth="324.0" style="-fx-border-color: #0086ad;">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="20.0" prefWidth="186.0" text="                                       Female" textFill="#0086ad">
-                                       <font>
-                                          <Font name="Berlin Sans FB Demi Bold" size="14.0" />
-                                       </font>
-                                    </Label>
+                                    <HBox prefHeight="28.0" prefWidth="322.0">
+                                       <children>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="324.0" text="Female" textFill="#0086ad">
+                                             <font>
+                                                <Font name="Garamond Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
                                     <PieChart fx:id="fPie" animated="false" labelsVisible="false" prefHeight="287.0" prefWidth="329.0" />
                                  </children>
                               </VBox>

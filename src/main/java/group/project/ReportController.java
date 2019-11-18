@@ -65,21 +65,21 @@ public class ReportController {
 	private void initialize() {
 		startDate.setValue(Localdate("16-11-2019"));
 		startDate.setShowWeekNumbers(true);
-		endDate.setValue(Localdate("16-11-2019"));
+		endDate.setValue(Localdate("30-11-2019"));
 		// endDate.setShowWeekNumbers(true);
 		ReasonPieChart();
 		ReasonBarChart();
 		
 	}
-
+   // format date
 	public static final LocalDate Localdate(String dateString) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		LocalDate localDate = LocalDate.parse(dateString, formatter);
 		return localDate;
 	}
 
-	@FXML
-	void change(ActionEvent event) { // change Date
+	@FXML // refresh when Date changed
+	void change(ActionEvent event) { 
 		ReasonPieChart();
 		ReasonBarChart();
 	}
@@ -91,22 +91,20 @@ public class ReportController {
 		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date2 = DAO.stringToDate(formatter.format(date));
 		System.out.println(date2);
-
 		return date2;
 	}
 
-	// diaplay Reason pie chart
+	// display Reason pie chart
 	public void ReasonPieChart() {
 		// sort by date
 		Date date1 = transformDate(startDate.getValue());
 		Date date2 = transformDate(endDate.getValue());
 
-		// get data form DB
+		// get data from DB
 		int r1F = 0, r2F = 0, r3F = 0, r4F = 0, r5F = 0, r6F = 0;
 		int r1M = 0, r2M = 0, r3M = 0, r4M = 0, r5M = 0, r6M = 0;
 
 		Map<Integer, Integer> reasonFrequency = reasonFrequency(date1, date2, "F");
-
 		r1F = reasonFrequency.get(1);
 		r2F = reasonFrequency.get(2);
 		r3F = reasonFrequency.get(3);
@@ -115,12 +113,12 @@ public class ReportController {
 		r6F = reasonFrequency.get(6);
 
 		System.out.println("female: " + r1F + " " + r2F + " " + r3F + " " + r4F + " " + r5F + " " + r6F);
-
+        // add to a pie chart
 		ObservableList<Data> listF = FXCollections.observableArrayList(new PieChart.Data("Borrow Stapler", r1F),
 				new PieChart.Data("Visit Nereshnee", r2F), new PieChart.Data("Visit Kim", r3F), new PieChart.Data("Complain", r4F),
 				new PieChart.Data("Collect Assignment", r5F), new PieChart.Data("Others", r6F));
 		fPie.setData(listF);
-
+        // get data from DB
 		Map<Integer, Integer> reasonFrequency2 = reasonFrequency(date1, date2, "M");
 		r1M = reasonFrequency2.get(1);
 		r2M = reasonFrequency2.get(2);
@@ -129,7 +127,7 @@ public class ReportController {
 		r5M = reasonFrequency2.get(5);
 		r6M = reasonFrequency2.get(6);
 		System.out.println("male:" + r1M + " " + r2M + " " + r3M + " " + r4M + " " + r5M + " " + r6M);
-
+		//add to a pie chart
 		ObservableList<Data> listF2 = FXCollections.observableArrayList(new PieChart.Data("Borrow Stapler", r1M),
 				new PieChart.Data("Visit Nereshnee", r2M), new PieChart.Data("Visit Kim", r3M), new PieChart.Data("Complain", r4M),
 				new PieChart.Data("Collect Assignment", r5M), new PieChart.Data("Others", r6M));
@@ -137,13 +135,13 @@ public class ReportController {
 
 	}
 
-	@FXML
+	@FXML  // quit
 	void Back(ActionEvent event) {
 		Stage stage = (Stage) frePane.getScene().getWindow();
 		stage.close();
 	}
 	
-	
+	// display reason bar chart
 	public void ReasonBarChart() {
 		int r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0;
 		Date date1 = transformDate(startDate.getValue());
@@ -157,7 +155,7 @@ public class ReportController {
 		r5 = reasonFrequency.get(5);
 		r6 = reasonFrequency.get(6);
 		System.out.println("total:" + r1 + " " + r2 + " " + r3 + " " + r4 + " " + r5 + " " + r6);
-				
+		// add to barchart		
 		XYChart.Series set = new XYChart.Series<>();
 		set.getData().addAll(
 				new XYChart.Data("Borrow Stapler",r1),

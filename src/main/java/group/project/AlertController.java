@@ -40,16 +40,17 @@ public class AlertController {
 	private AnchorPane alertPane;
 
 	private byte[] face;
-	
+
 	private Mat frameMat;
 
+	// pass face feature
 	public void setFace(byte[] feature) {
 		face = feature;
 		System.out.println("New feature Saved");
 		// System.out.println(feature);
-
 	}
 
+	// save face into test.jpg
 	public void setImage(Mat frame) {
 		frameMat = frame;
 		try {
@@ -58,30 +59,26 @@ public class AlertController {
 			if (Files.notExists(f.toPath())) {
 				Files.createDirectory(f.toPath());
 			}
-			imwrite(f.getAbsolutePath() + "/test.jpg", frameMat);  // thread issue!!!
+			imwrite(f.getAbsolutePath() + "/test.jpg", frameMat);
 			System.out.println("test.jpg generated!");
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);
 		}
-		
-		
-		
+
 		try {
 			File f = new File(getClass().getClassLoader().getResource("image/test.jpg").getFile());
-			//Image img = new Image(getClass().getResource("image/test.jpg").toURI().toString()); //getClass().getResource("/image/test.jpg").toURI().toString()
 			Image img = new Image(f.toURI().toString());
 			image.setImage(img);
 		} catch (Exception e) {
 			e.printStackTrace();
-		} // src/main/resources/image/test.jpg
+		}
 
 	}
 
-	@FXML
+	@FXML // change to add student page
 	void addStudent(ActionEvent event) {
-
 		Platform.runLater(() -> {
 			FXMLLoader fxmlLoaderStuFxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("AddStu.fxml"));
 			Parent stuParent;
@@ -89,12 +86,11 @@ public class AlertController {
 				stuParent = (Parent) fxmlLoaderStuFxmlLoader.load();
 				AddStudentController addStudentController = fxmlLoaderStuFxmlLoader.getController();
 				// System.out.println ("add stu controller");
-				addStudentController.setFeature(face);
-				addStudentController.setImage();
+				addStudentController.setFeature(face); // pass face feature
+				addStudentController.setImage(); // save image
 				Scene stuScene = new Scene(stuParent);
 				((Stage) add.getScene().getWindow()).setScene(stuScene);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -102,7 +98,7 @@ public class AlertController {
 
 	}
 
-	@FXML
+	@FXML  //quit 
 	void quit(ActionEvent event) {
 		Stage stage = (Stage) alertPane.getScene().getWindow();
 		stage.close();
