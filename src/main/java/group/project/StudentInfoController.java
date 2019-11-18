@@ -29,7 +29,6 @@ import javafx.scene.chart.PieChart.Data;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -81,10 +80,10 @@ public class StudentInfoController {
     private ImageView imageview;
     
     @FXML
-    private TextField VisitTimes;
+    private Label VisitTimes;
     
     @FXML
-    private TextField lastVisitTime;
+    private Label lastVisitTime;
 
     @FXML
     private Label message;
