@@ -143,6 +143,9 @@ public class StartCameraController implements Initializable {
 					// No need webcam anymore
 					capture.release();
 
+					// reset checked counter
+					checkedCount = 0;
+
 					// Change view to choose reason
 					Platform.runLater(() -> {
 						try {
@@ -176,6 +179,8 @@ public class StartCameraController implements Initializable {
 					System.out.println("Not Identified");
 					// stop webcam
 					capture.release();
+					// reset checked counter
+					checkedCount = 0;
 
 
 					// Mat to byte[]
