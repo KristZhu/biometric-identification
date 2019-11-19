@@ -1,28 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
-<?import javafx.scene.chart.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.chart.PieChart?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="684.0" prefWidth="992.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group.project.StudentInfoController">
+<AnchorPane prefHeight="684.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group.project.StudentInfoController">
    <children>
       <VBox layoutX="4.0" layoutY="4.0" prefHeight="673.0" prefWidth="344.0" style="-fx-background-color: #005582; -fx-border-color: #daf8e3;">
          <children>
@@ -105,93 +93,132 @@
             </HBox>
          </children></VBox>
 
-      <VBox layoutX="350.0" layoutY="4.0" prefHeight="673.0" prefWidth="634.0" style="-fx-border-color: #005582;">
+      <VBox layoutX="350.0" layoutY="4.0" prefHeight="673.0" prefWidth="936.0" style="-fx-border-color: #005582;">
          <children>
-            <Pane prefHeight="225.0" prefWidth="589.0" styleClass="pane">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="TOP" layoutX="200.0" layoutY="-1.0" prefHeight="30.0" prefWidth="247.0" text="STUDENT DETAILS" textFill="#0086ad">
-                     <font>
-                        <Font name="Garamond Bold" size="18.0" />
-                     </font>
-                  </Label>
+            <VBox prefHeight="225.0" prefWidth="589.0" alignment="top_center" styleClass="pane">
+               <Label alignment="CENTER" contentDisplay="TOP" layoutX="-1.0" layoutY="-1.0" prefHeight="34.0" prefWidth="934.0" text="STUDENT DETAILS" textFill="#0086ad">
+                  <font>
+                     <Font name="Garamond Bold" size="18.0" />
+                  </font>
+               </Label>
 
-                  <Label layoutX="109.0" layoutY="51.0" text="ID          :" textFill="#0086ad">
-                     <font>
-                        <Font name="Garamond Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="109.0" layoutY="84.0" prefHeight="17.0" prefWidth="71.0" text="Name    :" textFill="#0086ad">
-                     <font>
-                        <Font name="Garamond Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="109.0" layoutY="117.0" text="Gender  :" textFill="#0086ad">
-                     <font>
-                        <Font name="Garamond Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="109.0" layoutY="150.0" text="Year       :" textFill="#0086ad">
-                     <font>
-                        <Font name="Garamond Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="109.0" layoutY="185.0" text="Major    :" textFill="#0086ad">
-                     <font>
-                        <Font name="Garamond Bold" size="14.0" />
-                     </font>
-                  </Label>
-
-                  <Label fx:id="studentID" layoutX="188.0" layoutY="46.0" prefHeight="28.0" prefWidth="169.0" text="ID">
-                     <font>
-                        <Font name="Garamond Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="nameText" layoutX="188.0" layoutY="80.0" prefHeight="25.0" prefWidth="312.0" text="Name">
-                     <font>
-                        <Font name="Garamond Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="gender" layoutX="188.0" layoutY="114.0" prefHeight="23.0" prefWidth="208.0" text="Gender">
-                     <font>
-                        <Font name="Garamond Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="year" layoutX="188.0" layoutY="147.0" prefHeight="23.0" prefWidth="208.0" text="Year">
-                     <font>
-                        <Font name="Garamond Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="major" layoutX="188.0" layoutY="181.0" prefHeight="25.0" prefWidth="312.0" text="Major">
-                     <font>
-                        <Font name="Garamond Bold" size="14.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
+	       <HBox prefHeight="50" alignment="bottom_center" spacing="50" />
+	       <HBox prefHeight="120" alignment="center" spacing="50">
+	         <GridPane alignment="top_left" hgap="10" vgap="10">
+                    <Label GridPane.rowIndex="0" GridPane.columnIndex="0" text="ID" textFill="#0086ad">
+                       <font>
+                          <Font name="Garamond Bold" size="16.0" />
+                       </font>
+                    </Label>
+                    <Label GridPane.rowIndex="0" GridPane.columnIndex="1" text=":" textFill="#0086ad">
+                       <font>
+                          <Font name="Garamond Bold" size="16.0" />
+                       </font>
+                    </Label>
+                    <Label GridPane.rowIndex="0" GridPane.columnIndex="2" fx:id="studentID" text="ID">
+                       <font>
+                          <Font name="Garamond Bold" size="16.0" />
+                       </font>
+                    </Label>
+                    <Label GridPane.rowIndex="1" GridPane.columnIndex="0" text="Name" textFill="#0086ad">
+                       <font>
+                          <Font name="Garamond Bold" size="16.0" />
+                       </font>
+                    </Label>
+                    <Label GridPane.rowIndex="1" GridPane.columnIndex="1" text=":" textFill="#0086ad">
+                       <font>
+                          <Font name="Garamond Bold" size="16.0" />
+                       </font>
+                    </Label>
+                    <Label GridPane.rowIndex="1" GridPane.columnIndex="2" fx:id="nameText" text="Name">
+                       <font>
+                          <Font name="Garamond Bold" size="16.0" />
+                       </font>
+                    </Label>
+	         </GridPane>
+	         <GridPane alignment="top_left" hgap="10" vgap="10">
+                    <Label GridPane.rowIndex="0" GridPane.columnIndex="0" text="Year" textFill="#0086ad">
+                       <font>
+                          <Font name="Garamond Bold" size="16.0" />
+                       </font>
+                    </Label>
+                    <Label GridPane.rowIndex="0" GridPane.columnIndex="1" text=":" textFill="#0086ad">
+                       <font>
+                          <Font name="Garamond Bold" size="16.0" />
+                       </font>
+                    </Label>
+                    <Label GridPane.rowIndex="0" GridPane.columnIndex="2" fx:id="year" text="Year">
+                       <font>
+                          <Font name="Garamond Bold" size="16.0" />
+                       </font>
+                    </Label>
+                    <Label GridPane.rowIndex="1" GridPane.columnIndex="0" text="Major" textFill="#0086ad">
+                       <font>
+                          <Font name="Garamond Bold" size="16.0" />
+                       </font>
+                    </Label>
+                    <Label GridPane.rowIndex="1" GridPane.columnIndex="1" text=":" textFill="#0086ad">
+                       <font>
+                          <Font name="Garamond Bold" size="16.0" />
+                       </font>
+                    </Label>
+                    <Label GridPane.rowIndex="1" GridPane.columnIndex="2" fx:id="major" text="Major">
+                       <font>
+                          <Font name="Garamond Bold" size="16.0" />
+                       </font>
+                    </Label>
+	         </GridPane>
+	         <GridPane alignment="top_left" hgap="10" vgap="10">
+                    <Label GridPane.rowIndex="0" GridPane.columnIndex="0" text="Gender" textFill="#0086ad">
+                       <font>
+                          <Font name="Garamond Bold" size="16.0" />
+                       </font>
+                    </Label>
+                    <Label GridPane.rowIndex="0" GridPane.columnIndex="1" text=":" textFill="#0086ad">
+                       <font>
+                          <Font name="Garamond Bold" size="16.0" />
+                       </font>
+                    </Label>
+                    <Label fx:id="gender" GridPane.rowIndex="0" GridPane.columnIndex="2" text="Gender">
+                       <font>
+                          <Font name="Garamond Bold" size="16.0" />
+                       </font>
+                    </Label>
+	         </GridPane>
+	       </HBox>
+            </VBox>
             <HBox prefHeight="11.0" prefWidth="632.0" />
             <Pane prefHeight="318.0" prefWidth="632.0" styleClass="pane">
                <children>
-                  <VBox layoutX="14.0" layoutY="16.0" prefHeight="288.0" prefWidth="296.0" style="-fx-border-color: #00c2c7;" styleClass="vbox">
+                  <VBox layoutX="14.0" layoutY="16.0" prefHeight="288.0" prefWidth="567.0" style="-fx-border-color: #00c2c7;" styleClass="vbox">
                      <children>
                         <Label alignment="CENTER" contentDisplay="TOP" prefHeight="30.0" prefWidth="294.0" text="CATEGORY" textFill="#0086ad">
                            <font>
                               <Font name="Garamond Bold" size="14.0" />
                            </font>
                         </Label>
-                        <BarChart fx:id="barChart" prefHeight="175.0" prefWidth="294.0">
+                        <BarChart fx:id="barChart" prefHeight="175.0" prefWidth="487.0">
                           <xAxis>
-                            <CategoryAxis side="BOTTOM" fx:id="x" />
+                            <CategoryAxis prefHeight="20.0" prefWidth="489.0" side="BOTTOM" fx:id="x" />
                           </xAxis>
                           <yAxis>
-                            <NumberAxis fx:id="y" side="LEFT" />
+                            <NumberAxis fx:id="y" prefHeight="125.0" prefWidth="39.0" side="LEFT" />
                           </yAxis>
                         </BarChart>
 
-                        <Label prefHeight="28.0" prefWidth="294.0" text="     1:Borrow Stapler  2: Visit Nereshnee  3:Visit Kim" />
-                        <Label prefHeight="28.0" prefWidth="294.0" text="     4: Complain  5: Collect Assignment  6:Others" />
+                        <!--Label prefHeight="28.0" prefWidth="294.0" text="     1:Borrow Stapler  2: Visit Nereshnee  3:Visit Kim" />
+                        <Label prefHeight="28.0" prefWidth="294.0" text="     4: Complain  5: Collect Assignment  6:Others" /-->
+			<GridPane alignment="center" hgap="10" vgap="10">
+			  <Label GridPane.columnIndex="0" GridPane.rowIndex="0" text="1: Borrow Stapler" />
+			  <Label GridPane.columnIndex="1" GridPane.rowIndex="0" text="2: Visit Nereshnee" />
+			  <Label GridPane.columnIndex="0" GridPane.rowIndex="1" text="3: Visit Kim" />
+			  <Label GridPane.columnIndex="1" GridPane.rowIndex="1" text="4: Complain" />
+			  <Label GridPane.columnIndex="0" GridPane.rowIndex="2" text="5: Collect Assignment" />
+			  <Label GridPane.columnIndex="1" GridPane.rowIndex="2" text="6: Others" />
+			</GridPane>
                      </children>
                   </VBox>
-                  <VBox layoutX="327.0" layoutY="16.0" prefHeight="288.0" prefWidth="289.0" style="-fx-border-color: #00c2c7;" styleClass="vbox">
+                  <VBox layoutX="591.0" layoutY="16.0" prefHeight="288.0" prefWidth="329.0" style="-fx-border-color: #00c2c7;" styleClass="vbox">
                      <children>
                         <Label alignment="CENTER" contentDisplay="TOP" prefHeight="28.0" prefWidth="290.0" text="RECEPTION VISIT DETAILS" textFill="#0086ad">
                            <font>
@@ -224,7 +251,7 @@
 
             <Pane prefHeight="153.0" prefWidth="632.0" styleClass="pane">
                <children>
-                  <VBox layoutX="327.0" layoutY="14.0" prefHeight="119.0" prefWidth="289.0" style="-fx-border-color: #00c2c7;" styleClass="vbox">
+                  <VBox layoutX="591.0" layoutY="14.0" prefHeight="119.0" prefWidth="329.0" style="-fx-border-color: #00c2c7;" styleClass="vbox">
                      <children>
                         <Label alignment="CENTER" contentDisplay="TOP" prefHeight="30.0" prefWidth="283.0" text="ANNOUNCEMENTS" textFill="#0086ad">
                            <font>
@@ -238,7 +265,7 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox layoutX="14.0" layoutY="14.0" prefHeight="119.0" prefWidth="296.0" style="-fx-border-color: #00c2c7;" styleClass="vbox">
+                  <VBox layoutX="14.0" layoutY="14.0" prefHeight="119.0" prefWidth="567.0" style="-fx-border-color: #00c2c7;" styleClass="vbox">
                      <children>
                         <Label alignment="CENTER" contentDisplay="TOP" prefHeight="30.0" prefWidth="296.0" text="ALERT" textFill="#0086ad">
                            <font>
