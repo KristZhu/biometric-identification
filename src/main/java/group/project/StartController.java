@@ -1,78 +1,90 @@
 package group.project;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+/**
+ * A controller class to handle the home view
+ *
+ * @author ruby
+ */
 public class StartController {
 
-    @FXML
-    private Button exit;
-
-    @FXML
-    private Button report;
-
-    @FXML
-    private Button camera;
-    
-    @FXML
-    private AnchorPane startPane;
-    
+    /**
+     * The FaceRecognizer object to be passed to StartCameraController
+     */
     FaceRecognizer faceRecognizer;
 
+    /**
+     * An event handler for start camera button. Used to display the camera
+     * window
+     *
+     * @param event The start camera button event
+     */
     @FXML
     void startCamera(ActionEvent event) {
-		//camera.setStyle("-fx-background-color: #9489DE; ");
-    	loadWindow("StartCamera.fxml");
-
+        loadWindow("StartCamera.fxml");
     }
 
+    /**
+     * An event handler for quit button. Used to quit the program.
+     *
+     * @param event The quit button event
+     */
     @FXML
     void quit(ActionEvent event) {
-		//exit.setStyle("-fx-background-color: #9489DE; ");
-    	Platform.exit();
-    	System.exit(0);
+        Platform.exit();
+        System.exit(0);
     }
 
+    /**
+     * An event handler for report button. Used to display the students report
+     * window
+     *
+     * @param event The report button event
+     */
     @FXML
-    void showReport(ActionEvent event) { 
-		//report.setStyle("-fx-background-color: #9489DE; ");
-    	loadWindow("Report.fxml");
+    void showReport(ActionEvent event) {
+        loadWindow("Report.fxml");
     }
-    
-    // load desired window
-    void loadWindow(String name) {
-    	try {
-    		FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(name));
-			Parent parent = loader.load();
-    		if(name.equals("StartCamera.fxml")) {
-    			((StartCameraController)loader.getController()).setFaceRecognizer(faceRecognizer);
-    		}
-			Stage stage = new Stage(StageStyle.DECORATED);
-			stage.setScene(new Scene(parent));
-			stage.show();
-		} catch (IOException e) {
-			e.printStackTrace(); //?
-		}
-    	
-    	
-    }
-    
-    public StartController() throws IOException {
-		faceRecognizer = new FaceRecognizer("haarcascade_frontalface_alt2.xml", "nn4.small2.v1.t7");
-	}
-}
 
+    /**
+     * A method to load and display the window with 'name' fxml file
+     *
+     * @param name The FXML file name to be displayed
+     */
+    void loadWindow(String name) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(name));
+            Parent parent = loader.load();
+            if (name.equals("StartCamera.fxml")) {
+                ((StartCameraController) loader.getController()).setFaceRecognizer(faceRecognizer);
+            }
+            Stage stage = new Stage(StageStyle.DECORATED);
+            stage.setScene(new Scene(parent));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * The constructor of this controller. Used to load the pre-trained models
+     * used in the FaceRecognizer
+     *
+     * @throws IOException Exception when the files of the pre-trained models
+     * could not be found/loaded
+     */
+    public StartController() throws IOException {
+        faceRecognizer = new FaceRecognizer("haarcascade_frontalface_alt2.xml", "nn4.small2.v1.t7");
+    }
+}
