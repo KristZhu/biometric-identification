@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="684.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group.project.StudentInfoController">
    <children>
@@ -16,7 +22,7 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="46.0" prefWidth="247.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="TOP" prefHeight="60.0" prefWidth="245.0" text="STUDENT INFORMATION" textFill="#daf8e3">
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="46.0" prefWidth="341.0" text="STUDENT INFORMATION" textFill="#daf8e3">
                      <font>
                         <Font name="Garamond Bold" size="16.0" />
                      </font>
@@ -56,7 +62,7 @@
                <children>
                   <Pane prefHeight="209.0" prefWidth="319.0" style="-fx-border-color: #daf8e3;">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="21.0" prefHeight="18.0" prefWidth="306.0" text="FACE RECOGNITION" textFill="#daf8e3">
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="21.0" prefHeight="18.0" prefWidth="306.0" text="FACE EMOTIONS" textFill="#daf8e3">
                            <font>
                               <Font name="Garamond Bold" size="16.0" />
                            </font>
@@ -73,7 +79,7 @@
                               <Font name="System Bold Italic" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="SadScale1" layoutX="99.0" layoutY="87.0" prefHeight="25.0" prefWidth="208.0" textFill="#daf8e3" />
+                        <Label fx:id="SadScale1" layoutX="93.0" layoutY="87.0" prefHeight="25.0" prefWidth="220.0" textFill="#daf8e3" />
                         <Label layoutX="18.0" layoutY="120.0" prefHeight="25.0" prefWidth="71.0" text="Surprise" textFill="#daf8e3">
                            <font>
                               <Font name="System Bold Italic" size="16.0" />
@@ -95,95 +101,121 @@
 
       <VBox layoutX="350.0" layoutY="4.0" prefHeight="673.0" prefWidth="936.0" style="-fx-border-color: #005582;">
          <children>
-            <VBox prefHeight="225.0" prefWidth="589.0" alignment="top_center" styleClass="pane">
+            <VBox alignment="top_center" prefHeight="225.0" prefWidth="589.0" styleClass="pane">
                <Label alignment="CENTER" contentDisplay="TOP" layoutX="-1.0" layoutY="-1.0" prefHeight="34.0" prefWidth="934.0" text="STUDENT DETAILS" textFill="#0086ad">
                   <font>
                      <Font name="Garamond Bold" size="18.0" />
                   </font>
                </Label>
 
-	       <HBox prefHeight="50" alignment="bottom_center" spacing="50" />
-	       <HBox prefHeight="120" alignment="center" spacing="50">
+	       <HBox alignment="bottom_center" prefHeight="50" spacing="50" />
+	       <HBox alignment="center" prefHeight="120" spacing="50">
 	         <GridPane alignment="top_left" hgap="10" vgap="10">
-                    <Label GridPane.rowIndex="0" GridPane.columnIndex="0" text="ID" textFill="#0086ad">
+                    <Label text="ID" textFill="#0086ad" GridPane.columnIndex="0" GridPane.rowIndex="0">
                        <font>
                           <Font name="Garamond Bold" size="16.0" />
                        </font>
                     </Label>
-                    <Label GridPane.rowIndex="0" GridPane.columnIndex="1" text=":" textFill="#0086ad">
+                    <Label text=":" textFill="#0086ad" GridPane.columnIndex="1" GridPane.rowIndex="0">
                        <font>
                           <Font name="Garamond Bold" size="16.0" />
                        </font>
                     </Label>
-                    <Label GridPane.rowIndex="0" GridPane.columnIndex="2" fx:id="studentID" text="ID">
+                    <Label fx:id="studentID" text="ID" GridPane.columnIndex="2" GridPane.rowIndex="0">
                        <font>
                           <Font name="Garamond Bold" size="16.0" />
                        </font>
                     </Label>
-                    <Label GridPane.rowIndex="1" GridPane.columnIndex="0" text="Name" textFill="#0086ad">
+                    <Label text="Name" textFill="#0086ad" GridPane.columnIndex="0" GridPane.rowIndex="1">
                        <font>
                           <Font name="Garamond Bold" size="16.0" />
                        </font>
                     </Label>
-                    <Label GridPane.rowIndex="1" GridPane.columnIndex="1" text=":" textFill="#0086ad">
+                    <Label text=":" textFill="#0086ad" GridPane.columnIndex="1" GridPane.rowIndex="1">
                        <font>
                           <Font name="Garamond Bold" size="16.0" />
                        </font>
                     </Label>
-                    <Label GridPane.rowIndex="1" GridPane.columnIndex="2" fx:id="nameText" text="Name">
+                    <Label fx:id="nameText" text="Name" GridPane.columnIndex="2" GridPane.rowIndex="1">
                        <font>
                           <Font name="Garamond Bold" size="16.0" />
                        </font>
                     </Label>
+                     <columnConstraints>
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                     </rowConstraints>
 	         </GridPane>
 	         <GridPane alignment="top_left" hgap="10" vgap="10">
-                    <Label GridPane.rowIndex="0" GridPane.columnIndex="0" text="Year" textFill="#0086ad">
+                    <Label text="Year" textFill="#0086ad" GridPane.columnIndex="0" GridPane.rowIndex="0">
                        <font>
                           <Font name="Garamond Bold" size="16.0" />
                        </font>
                     </Label>
-                    <Label GridPane.rowIndex="0" GridPane.columnIndex="1" text=":" textFill="#0086ad">
+                    <Label text=":" textFill="#0086ad" GridPane.columnIndex="1" GridPane.rowIndex="0">
                        <font>
                           <Font name="Garamond Bold" size="16.0" />
                        </font>
                     </Label>
-                    <Label GridPane.rowIndex="0" GridPane.columnIndex="2" fx:id="year" text="Year">
+                    <Label fx:id="year" text="Year" GridPane.columnIndex="2" GridPane.rowIndex="0">
                        <font>
                           <Font name="Garamond Bold" size="16.0" />
                        </font>
                     </Label>
-                    <Label GridPane.rowIndex="1" GridPane.columnIndex="0" text="Major" textFill="#0086ad">
+                    <Label text="Major" textFill="#0086ad" GridPane.columnIndex="0" GridPane.rowIndex="1">
                        <font>
                           <Font name="Garamond Bold" size="16.0" />
                        </font>
                     </Label>
-                    <Label GridPane.rowIndex="1" GridPane.columnIndex="1" text=":" textFill="#0086ad">
+                    <Label text=":" textFill="#0086ad" GridPane.columnIndex="1" GridPane.rowIndex="1">
                        <font>
                           <Font name="Garamond Bold" size="16.0" />
                        </font>
                     </Label>
-                    <Label GridPane.rowIndex="1" GridPane.columnIndex="2" fx:id="major" text="Major">
+                    <Label fx:id="major" text="Major" GridPane.columnIndex="2" GridPane.rowIndex="1">
                        <font>
                           <Font name="Garamond Bold" size="16.0" />
                        </font>
                     </Label>
+                     <columnConstraints>
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                     </rowConstraints>
 	         </GridPane>
 	         <GridPane alignment="top_left" hgap="10" vgap="10">
-                    <Label GridPane.rowIndex="0" GridPane.columnIndex="0" text="Gender" textFill="#0086ad">
+                    <Label text="Gender" textFill="#0086ad" GridPane.columnIndex="0" GridPane.rowIndex="0">
                        <font>
                           <Font name="Garamond Bold" size="16.0" />
                        </font>
                     </Label>
-                    <Label GridPane.rowIndex="0" GridPane.columnIndex="1" text=":" textFill="#0086ad">
+                    <Label text=":" textFill="#0086ad" GridPane.columnIndex="1" GridPane.rowIndex="0">
                        <font>
                           <Font name="Garamond Bold" size="16.0" />
                        </font>
                     </Label>
-                    <Label fx:id="gender" GridPane.rowIndex="0" GridPane.columnIndex="2" text="Gender">
+                    <Label fx:id="gender" text="Gender" GridPane.columnIndex="2" GridPane.rowIndex="0">
                        <font>
                           <Font name="Garamond Bold" size="16.0" />
                        </font>
                     </Label>
+                     <columnConstraints>
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints />
+                     </rowConstraints>
 	         </GridPane>
 	       </HBox>
             </VBox>
@@ -206,15 +238,22 @@
                           </yAxis>
                         </BarChart>
 
-                        <!--Label prefHeight="28.0" prefWidth="294.0" text="     1:Borrow Stapler  2: Visit Nereshnee  3:Visit Kim" />
-                        <Label prefHeight="28.0" prefWidth="294.0" text="     4: Complain  5: Collect Assignment  6:Others" /-->
 			<GridPane alignment="center" hgap="10" vgap="10">
-			  <Label GridPane.columnIndex="0" GridPane.rowIndex="0" text="1: Borrow Stapler" />
-			  <Label GridPane.columnIndex="1" GridPane.rowIndex="0" text="2: Visit Nereshnee" />
-			  <Label GridPane.columnIndex="0" GridPane.rowIndex="1" text="3: Visit Kim" />
-			  <Label GridPane.columnIndex="1" GridPane.rowIndex="1" text="4: Complain" />
-			  <Label GridPane.columnIndex="0" GridPane.rowIndex="2" text="5: Collect Assignment" />
-			  <Label GridPane.columnIndex="1" GridPane.rowIndex="2" text="6: Others" />
+			  <Label text="1: Borrow Stapler" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+			  <Label text="2: Visit Nereshnee" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+			  <Label text="3: Visit Kim" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+			  <Label text="4: Complain" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+			  <Label text="5: Collect Assignment" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+			  <Label text="6: Others" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                           <columnConstraints>
+                              <ColumnConstraints />
+                              <ColumnConstraints />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints />
+                              <RowConstraints />
+                              <RowConstraints />
+                           </rowConstraints>
 			</GridPane>
                      </children>
                   </VBox>
